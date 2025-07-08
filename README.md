@@ -1,6 +1,6 @@
 # 42 - Cube3d
 
-Este proyecto está inspirado en el famoso juego homónimo de los años 90, que fue el primer FPS de la historia.
+Este proyecto está inspirado en el famoso juego homónimo de los años 90, que fue el primer FPS de la historia Wolfenstein 3D.
 
 ## Created by
 
