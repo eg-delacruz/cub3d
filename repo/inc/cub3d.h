@@ -9,6 +9,9 @@
 # include <sys/time.h>
 # include <math.h>
 
+# include "libft.h"
+# include "MLX42/MLX42.h"
+
 # include "defines.h"
 
 #endif /* cub3d.h */
