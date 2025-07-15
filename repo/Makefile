@@ -1,42 +1,47 @@
-NAME=cub3D
-
+NAME= cube3d
+CC = cc
+HEADERS_DIR = /includes
+SRC_DIR = ./src
+SRC = main.c
+SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
+CFLAGS = -Wall -Werror -Wextra -IMLX42/include -I/usr/include/GLFW
+CFLAGS_LEAKS = -Wall -Werror -Wextra -g -IMLX42/include -I/usr/include/GLFW
+OBJFILES = $(SRC_FILES:.c=.o)
 MAKEFLAGS += --no-print-directory
 
-CC = cc
+libft_dir = lib/libft
+libft = $(libft_dir)/libft.a
 
-CFLAGS = -g -Wall -Wextra -Werror -Wunreachable-code -Ofast
+gnl_dir = lib/gnl
+gnl = $(gnl_dir)/gnl.a
 
-LIB_DIR = ./lib
-OBJ_DIR = ./objs
-SRC_DIR = ./src
-LIBFT_DIR = $(LIB_DIR)/libft
-MLX42_DIR = $(LIB_DIR)/MLX42
-
-MLX_GITHUB = https://github.com/codam-coding-college/MLX42.git
-MLX42 = $(MLX42_DIR)/build/libmlx42.a
-
-LIBFT = $(LIBFT_DIR)/libft.a
-
-INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
-LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw -lGL -lX11 -lXrandr -lXi -lXxf86vm -lXcursor
-
-
-SRC = main.c
-
-SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+# MLX42
+MLX42_DIR = MLX42/build
+MLX42 = $(MLX42_DIR)/libmlx42.a
+MLX42_FLAGS = -lglfw -pthread -lm -ldl
 
 # Colors
-RST = \033[0m
-GRAY = \033[38;5;244m
+GREEN = \033[0;32m
+RED = \033[1;31m
+BLUE_UNDER = \033[1;34m
 CYAN = \033[38;5;45m
+YELLOW = \033[0;33m
+MAGENTA = \033[0;35m
+WHITE = \033[1;37m
+WHITE_RED_BG = \033[0;41;37m
+GRAY = \033[38;5;244m
+YELLOW_UNDER = \033[1;4;33m
 ORANGE1 = \033[38;5;196m
 ORANGE2 = \033[38;5;202m
 ORANGE3 = \033[38;5;208m
 YELLOW1 = \033[38;5;214m
 YELLOW2 = \033[38;5;220m
+RST = \033[0m
 
-all: header libmlx $(NAME)
+MLX_42_TARGET = mlx
+
+# Rules
+all: header $(libft) $(gnl) $(MLX_42_TARGET) $(NAME)
 
 header:
 	@echo ""
@@ -52,40 +57,65 @@ header:
 	@echo "Gerardo de la Cruz ${CYAN} erde-la- ${RST}"
 	@echo "${GRAY} From: ${RST}    42 Madrid\n"
 
-$(MLX42):
-	@git clone $(MLX_GITHUB) $(MLX42_DIR)
-	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
-	@cmake --build $(MLX42_DIR)/build -j4
+$(NAME): $(OBJFILES) $(libft) $(gnl) $(MLX_42_TARGET)
+	@echo "$(BLUE_UNDER)Compiling $(NAME)$(RST)"
+	@$(CC) $(CFLAGS) $(OBJFILES) $(libft) $(gnl) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
 
-$(NAME): $(LIBFT) libmlx $(OBJ_FILES)
-	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(MLX42) $(LIBSFLAGS)
-	@echo "\n✅ DONE ./$(NAME) created!"
+$(libft):
+	@$(MAKE) -C $(libft_dir) all
 
-libmlx: $(MLX42)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $< $(LIBSFLAGS)
-	@printf "🔧 $(GRAY)$(CC) $(CFLAGS) -c $< -o $@$(RST)\n"
-
-$(LIBFT):
-	@make -C $(LIBFT_DIR) bonus
+$(gnl):
+	@$(MAKE) -C $(gnl_dir) all
 
 clean:
-	@printf "🧼 Cleaning .o files! 🫧\n"
-	@rm -rfd $(MLX42_DIR)/build
-	@rm -rfd $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean
+	@echo "$(BLUE_UNDER) 🧼 Removing .o files in all directories 🫧$(RST)"
+	@$(MAKE) -C $(libft_dir) clean
+	@$(MAKE) -C $(gnl_dir) clean
+	@rm -rf .b $(OBJFILES)
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@echo "rm -rfd $(MLX42_DIR)"
-	@rm -rfd ${MLX42_DIR}
-
-test:
-	@echo "$(LIB_DIR)"
+	@echo "$(BLUE_UNDER)Removing .a files and executables$(RST)"
+	@$(MAKE) -C $(libft_dir) fclean
+	@$(MAKE) -C $(gnl_dir) fclean
+	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# Testing
+exe: all
+	@echo "$(BLUE_UNDER)Executing $(NAME)...$(RST)"
+	@./$(NAME) "$(ARGS)"
+	@echo "$(GREEN)Program executed"
+	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
+	@rm -rf $(NAME)
+
+$(MLX_42_TARGET):
+	@if [ ! -d "MLX42" ]; then \
+		echo "$(BLUE_UNDER)Cloning MLX42 repository...$(RST)"; \
+		git clone git@github.com:codam-coding-college/MLX42.git; \
+	fi
+	@mkdir -p $(MLX42_DIR)
+	@if [ ! -f "MLX42/build/libmlx42.a" ]; then \
+		echo "$(BLUE_UNDER)Building MLX42 library...$(RST)"; \
+		cd MLX42 && cmake -B build && cmake --build build; \
+	fi
+	@if [ -d "MLX42/build" ]; then \
+		echo "$(BLUE_UNDER)Accessing build directory and finalizing build...$(RST)"; \
+		cd MLX42/build && make; \
+	else \
+		echo "Error: MLX42/build directory not found!"; \
+		exit 1; \
+	fi
+	@rm -rf MLX42/.github MLX42/.git
+
+# Needed libraries for WSL
+winstall:
+	sudo apt-get update
+	sudo apt-get install -y cmake libgl-dev libglx-dev libglu-dev mesa-common-dev \
+		libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+	sudo apt-get install libglfw3-dev
+	sudo apt-get install build-essential
+	sudo apt-get install libc6-dev
+
+
+.PHONY: WIN_MLX42 MLX42 all win_all winstall re clean fclean exe win_exe
