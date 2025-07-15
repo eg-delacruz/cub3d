@@ -20,7 +20,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 GNL = $(GNL_DIR)/gnl.a
 
 INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
-LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw -lGL -lX11 -lXrandr -lXi -lXxf86vm -lXcursor
+LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw -lGL -lX11 -lXrandr -lXi -lXcursor
 
 
 SRC = main.c
