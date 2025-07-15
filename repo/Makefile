@@ -89,6 +89,15 @@ exe: all
 	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
 	@rm -rf $(NAME)
 
+valgrind: $(NAME)
+	@echo "$(BLUE_UNDER)Compiling with Valgrind flags...$(RST)"
+	@$(CC) $(CFLAGS_LEAKS) $(OBJFILES) $(libft) $(gnl) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
+	@echo "$(BLUE_UNDER)Executing with Valgrind...$(RST)"
+	@valgrind --leak-check=full --show-leak-kinds=all --tool=memcheck --track-origins=yes ./$(NAME) $(ARGS)
+	@echo "$(GREEN)Valgrind execution completed"
+	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
+	@rm -rf $(NAME) $(OBJFILES)
+
 $(MLX_42_TARGET):
 	@if [ ! -d "MLX42" ]; then \
 		echo "$(BLUE_UNDER)Cloning MLX42 repository...$(RST)"; \
@@ -118,4 +127,4 @@ winstall:
 	sudo apt-get install libc6-dev
 
 
-.PHONY: WIN_MLX42 MLX42 all win_all winstall re clean fclean exe win_exe
+.PHONY: WIN_MLX42 MLX42 all winstall re clean fclean exe
