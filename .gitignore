@@ -1,5 +1,5 @@
 .vscode
 .editorconfig
 *.o
-/repo/MLX42
+/repo/lib/MLX42
 cub3D
