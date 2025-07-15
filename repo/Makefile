@@ -23,7 +23,7 @@ INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
 LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 
 
-SRC = main.c
+SRC = main.c /parse/check_input_file_name.c error.c
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
@@ -38,6 +38,7 @@ ORANGE3 = \033[38;5;208m
 YELLOW1 = \033[38;5;214m
 YELLOW2 = \033[38;5;220m
 
+# TODO: check if MLX already exists to avoid clonning it when doing make re
 all: header libmlx $(NAME)
 
 header:
@@ -79,7 +80,7 @@ $(GNL):
 # Testing
 exe: all
 	@echo "$(BLUE_UNDER)Executing $(NAME)...$(RST)"
-	@./$(NAME) "$(ARGS)"
+	@./$(NAME) $(ARGS)
 	@echo "$(GREEN)Program executed"
 	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
 	@rm -rf $(NAME)
@@ -95,14 +96,16 @@ valgrind: $(NAME)
 
 clean:
 	@printf "🧼 Cleaning .o files! 🫧\n"
-	@rm -rfd $(MLX42_DIR)/build
+	# TODO: uncomment this
+	# @rm -rfd $(MLX42_DIR)/build
 	@rm -rfd $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "rm -rfd $(MLX42_DIR)"
+	# TODO: uncomment this
+	# @echo "rm -rfd $(MLX42_DIR)"
 	@rm -rfd ${MLX42_DIR}
 
 test:

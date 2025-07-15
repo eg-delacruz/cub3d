@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
+/*   Updated: 2025/07/15 23:28:23 by erde-la-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -16,6 +28,10 @@
 # define BGM "\033[45;37m"
 # define BGB "\033[44;37m"
 # define RST "\033[0m"
+
+// Error messages
+# define ERR_INVALID_ARGS "Exactly one argument expected (.cub file path)"
+# define ERR_INVALID_FILE_EXT "Invalid file extention (.cub)"
 
 # ifndef PI
 #  define PI 3.14159265358979323846
