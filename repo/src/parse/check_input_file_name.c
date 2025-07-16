@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-bool	check_input_file_name(int argc, char *file_path)
+bool	check_input_file(int argc, char *file_path)
 {
 	int	len;
+	int	fd;
 
 	if (argc != 2)
 	{
@@ -30,5 +31,12 @@ bool	check_input_file_name(int argc, char *file_path)
 		puterror(ERR_INVALID_FILE_EXT);
 		return (false);
 	}
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+	{
+		puterror(ERR_FILE_DOESNT_EXIST);
+		return (false);
+	}
+	close(fd);
 	return (true);
 }

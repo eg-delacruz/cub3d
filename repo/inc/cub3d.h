@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <fcntl.h>
 # include <math.h>
 
 # include "libft.h"
@@ -34,7 +35,7 @@ typedef struct s_game
 // Functions
 
 // Parsing
-bool	check_input_file_name(int argc, char * file_path);
+bool	check_input_file(int argc, char * file_path);
 
 // Errors
 void	puterror(char *message);

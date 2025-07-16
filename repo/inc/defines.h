@@ -32,6 +32,7 @@
 // Error messages
 # define ERR_INVALID_ARGS "Exactly one argument expected (.cub file path)"
 # define ERR_INVALID_FILE_EXT "Invalid file extention (.cub)"
+# define ERR_FILE_DOESNT_EXIST "Provided file doesn't exist"
 
 # ifndef PI
 #  define PI 3.14159265358979323846
