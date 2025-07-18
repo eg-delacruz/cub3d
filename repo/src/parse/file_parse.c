@@ -12,6 +12,18 @@
 
 #include "cub3d.h"
 
+static bool	is_empty_file(int *file_fd)
+{
+	char	buffer;
+
+	if (read(*file_fd, &buffer, 1) == 0)
+	{
+		close(*file_fd);
+		return (true);
+	}
+	return (false);
+}
+
 // Check if passed line is a valid file element (except for the map)
 static bool	is_valid_eleme_type(char *elem)
 {
@@ -76,7 +88,7 @@ static bool	valid_map_position_and_elems(char **elems, int *file_fd)
 				puterror(ERR_WRONG_POS);
 			else
 				puterror(ERR_INVALID_ELEMENT);
-			// TODO: free array elems here (reuse the free_elems_arr_at_malloc_err function)
+			free_elems_arr_at_malloc_err(elems, 6);
 			close (*file_fd);
 			return (false);
 		}
@@ -85,14 +97,16 @@ static bool	valid_map_position_and_elems(char **elems, int *file_fd)
 	return (true);
 }
 
-// TODO: check empty file
+// TODO: remember to read the file till the end to avoid leaks of the static variable
+// TODO: for some reason, the subject_example.cub map is throwing an error...
 int	parse_input_file(t_game *game, char *path)
 {
 	int		file_fd;
-	// TODO: liberar sus elementos pero no el arreglo (está en stack)
 	char	*elems[7];
 
 	file_fd = open(path, O_RDONLY);
+	if (is_empty_file(&file_fd) == true)
+		return (error_free_status(ERR_EMPTY_FILE, game, 1));
 	if (set_elems_in_arr(elems, &file_fd) == 1)
 		return (error_free_status("set_elems_in_arr function failed", game, 1));
 	if (valid_map_position_and_elems(elems, &file_fd) == false)

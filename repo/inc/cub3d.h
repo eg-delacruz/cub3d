@@ -30,6 +30,12 @@
 
 typedef struct s_game
 {
+	char *NO_texture;
+	char *SO_texture;
+	char *WE_texture;
+	char *EA_texture;
+	char *F_color;
+	char *C_color;
 }	t_game;
 
 // Functions

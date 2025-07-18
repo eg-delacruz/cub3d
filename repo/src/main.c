@@ -101,5 +101,6 @@ int32_t	main(int argc, char *args[])
 	// mlx_loop(mlx);
 	// mlx_terminate(mlx);
 
+	free_game(game);
 	return (EXIT_SUCCESS);
 }

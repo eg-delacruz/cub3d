@@ -26,6 +26,7 @@ LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 SRC = main.c \
 	/parse/check_input_file.c \
 	/parse/file_parse.c \
+	/parse/parse_utils.c \
 	init_game_struct.c \
 	free.c \
 	error.c
@@ -90,9 +91,9 @@ exe: all
 	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
 	@rm -rf $(NAME)
 
-valgrind: $(NAME)
-	@echo "$(BLUE_UNDER)Compiling with Valgrind flags...$(RST)"
-	@$(CC) $(CFLAGS_LEAKS) $(OBJFILES) $(libft) $(gnl) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
+valgrind: libmlx $(NAME)
+	@echo "$(BLUE_UNDER)Compiling...$(RST)"
+	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(GNL) $(MLX42) $(LIBSFLAGS)
 	@echo "$(BLUE_UNDER)Executing with Valgrind...$(RST)"
 	@valgrind --leak-check=full --show-leak-kinds=all --tool=memcheck --track-origins=yes ./$(NAME) $(ARGS)
 	@echo "$(GREEN)Valgrind execution completed"

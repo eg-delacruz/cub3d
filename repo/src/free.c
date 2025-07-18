@@ -18,8 +18,13 @@ void	free_elems_arr_at_malloc_err(char **elems, size_t iterator)
 		ft_safe_free((void **)&(elems[--iterator]));
 }
 
-// TODO: properly do this function
 void	free_game(t_game *game)
 {
-	(void)game;
+	ft_safe_free((void **)&game->NO_texture);
+	ft_safe_free((void **)&game->SO_texture);
+	ft_safe_free((void **)&game->WE_texture);
+	ft_safe_free((void **)&game->EA_texture);
+	ft_safe_free((void **)&game->F_color);
+	ft_safe_free((void **)&game->C_color);
+	ft_safe_free((void **)&game);
 }

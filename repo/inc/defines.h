@@ -35,6 +35,7 @@
 # define ERR_FILE_DOESNT_EXIST "Provided file doesn't exist"
 # define ERR_WRONG_POS "Wrong map position or missing element in .cub file"
 # define ERR_INVALID_ELEMENT "Invalid element. Expected: NO, SO, WE, EA, F, C"
+# define ERR_EMPTY_FILE "The provided .cub file is empty"
 
 # ifndef PI
 #  define PI 3.14159265358979323846
