@@ -33,6 +33,8 @@
 # define ERR_INVALID_ARGS "Exactly one argument expected (.cub file path)"
 # define ERR_INVALID_FILE_EXT "Invalid file extention (.cub)"
 # define ERR_FILE_DOESNT_EXIST "Provided file doesn't exist"
+# define ERR_WRONG_POS "Wrong map position or missing element in .cub file"
+# define ERR_INVALID_ELEMENT "Invalid element. Expected: NO, SO, WE, EA, F, C"
 
 # ifndef PI
 #  define PI 3.14159265358979323846

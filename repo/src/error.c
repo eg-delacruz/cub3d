@@ -27,11 +27,12 @@ int	puterr_status(char *message, int status)
 	return (status);
 }
 
-// TODO: complete in the future
-// //puterror + free_program
-// void	error_free(char *message, t_shell *shell, int exit_code)
-// {
-// 	puterror(message);
-// 	free_program(shell);
-// 	exit(exit_code);
-// }
+//puterror + free_program + return exit status
+int	error_free_status(char *message, t_game *game, int exit_code)
+{
+	(void)game;
+	// TODO: create function to free game
+	puterror(message);
+	// free_game(game);
+	return (exit_code);
+}

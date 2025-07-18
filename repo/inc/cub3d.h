@@ -23,7 +23,7 @@
 # include <math.h>
 
 # include "libft.h"
-// # include "get_next_line.h"
+# include "get_next_line.h"
 # include "MLX42/MLX42.h"
 
 # include "defines.h"
@@ -33,12 +33,19 @@ typedef struct s_game
 }	t_game;
 
 // Functions
+t_game	*init_game_struct(void);
 
 // Parsing
-bool	check_input_file(int argc, char * file_path);
+bool	check_input_file(int argc, char *file_path);
+int		parse_input_file(t_game *game, char *path);
 
 // Errors
 void	puterror(char *message);
 int		puterr_status(char *message, int status);
+int		error_free_status(char *message, t_game *game, int exit_code);
+
+// Free
+void	free_elems_arr_at_malloc_err(char **elems, size_t iterator);
+void	free_game(t_game *game);
 
 #endif /* cub3d.h */

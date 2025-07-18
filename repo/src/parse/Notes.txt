@@ -1,10 +1,14 @@
 //// Possible characters: 0, 1, N, S, E, W
 
 //// Input file constraints:
-- File must end in .cub
-- Surrounded by walls
+- File must end in .cub ✅
 - Each type of element CAN be separated by at least one line
-- Map content has to be de last always
-- Each element (except for the map) can be set in any order in the file
-- Except for the map, each type of info from an element can be separated by one or more spaces
 - Each element info can have different orders (NO SO WE EA or WE SO EA NO)
+- Map content has to the de last always
+- Each element (except for the map) can be set in any order in the file
+
+- Except for the map, each type of info from an element can be separated by one or more spaces
+
+Regarding map:
+- Surrounded by walls
+- One player exactly

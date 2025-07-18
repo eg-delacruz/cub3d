@@ -19,11 +19,16 @@ MLX42 = $(MLX42_DIR)/build/libmlx42.a
 LIBFT = $(LIBFT_DIR)/libft.a
 GNL = $(GNL_DIR)/gnl.a
 
-INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
+INCLUDES = -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX42_DIR)/include -I./inc
 LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 
 
-SRC = main.c /parse/check_input_file_name.c error.c
+SRC = main.c \
+	/parse/check_input_file.c \
+	/parse/file_parse.c \
+	init_game_struct.c \
+	free.c \
+	error.c
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
@@ -60,8 +65,8 @@ $(MLX42):
 	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
 	@cmake --build $(MLX42_DIR)/build -j4
 
-$(NAME): $(LIBFT) libmlx $(OBJ_FILES)
-	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(MLX42) $(LIBSFLAGS)
+$(NAME): $(LIBFT) $(GNL) libmlx $(OBJ_FILES)
+	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(GNL) $(MLX42) $(LIBSFLAGS)
 	@echo "\n✅ DONE ./$(NAME) created!"
 
 libmlx: $(MLX42)
@@ -113,4 +118,4 @@ test:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re exe valgrind test
