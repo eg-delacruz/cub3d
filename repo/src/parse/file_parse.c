@@ -12,20 +12,23 @@
 
 #include "cub3d.h"
 
-static bool	is_empty_file(int *file_fd)
+static bool	is_empty_file(char *path)
 {
+	int		file_fd;
 	char	buffer;
 
-	if (read(*file_fd, &buffer, 1) == 0)
+	file_fd = open(path, O_RDONLY);
+	if (read(file_fd, &buffer, 1) == 0)
 	{
-		close(*file_fd);
+		close(file_fd);
 		return (true);
 	}
+	close(file_fd);
 	return (false);
 }
 
 // Check if passed line is a valid file element (except for the map)
-static bool	is_valid_eleme_type(char *elem)
+static bool	is_valid_elem_type(char *elem)
 {
 	if (!elem)
 		return (false);
@@ -82,7 +85,7 @@ static bool	valid_map_position_and_elems(char **elems, int *file_fd)
 	i = 0;
 	while (elems[i])
 	{
-		if (is_valid_eleme_type(elems[i]) == false)
+		if (is_valid_elem_type(elems[i]) == false)
 		{
 			if (elems[i][0] == '1')
 				puterror(ERR_WRONG_POS);
@@ -105,7 +108,7 @@ int	parse_input_file(t_game *game, char *path)
 	char	*elems[7];
 
 	file_fd = open(path, O_RDONLY);
-	if (is_empty_file(&file_fd) == true)
+	if (is_empty_file(path) == true)
 		return (error_free_status(ERR_EMPTY_FILE, game, 1));
 	if (set_elems_in_arr(elems, &file_fd) == 1)
 		return (error_free_status("set_elems_in_arr function failed", game, 1));
