@@ -24,8 +24,10 @@ LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 
 
 SRC = main.c \
+	/parse/parse.c \
 	/parse/check_input_file.c \
 	/parse/file_parse.c \
+	/parse/map_parse.c \
 	/parse/parse_utils.c \
 	init_game_struct.c \
 	free.c \

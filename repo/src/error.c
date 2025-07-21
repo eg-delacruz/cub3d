@@ -30,9 +30,7 @@ int	puterr_status(char *message, int status)
 //puterror + free_program + return exit status
 int	error_free_status(char *message, t_game *game, int exit_code)
 {
-	(void)game;
-	// TODO: create function to free game
 	puterror(message);
-	// free_game(game);
+	free_game(game);
 	return (exit_code);
 }

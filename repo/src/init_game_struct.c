@@ -23,7 +23,7 @@ t_game *init_game_struct(void)
 	game->SO_texture = NULL;
 	game->WE_texture = NULL;
 	game->EA_texture = NULL;
-	game->F_color = NULL;
-	game->C_color = NULL;
+	game->F_color_str = NULL;
+	game->C_color_str = NULL;
 	return (game);
 }

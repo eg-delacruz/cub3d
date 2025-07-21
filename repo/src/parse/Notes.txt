@@ -2,13 +2,25 @@
 
 //// Input file constraints:
 - File must end in .cub ✅
-- Each type of element CAN be separated by at least one line
-- Each element info can have different orders (NO SO WE EA or WE SO EA NO)
-- Map content has to the de last always
-- Each element (except for the map) can be set in any order in the file
+- Each type of element CAN be separated by at least one line ✅
+- Each element info can have different orders (NO SO WE EA or WE SO EA NO) ✅
+- Map content has to be the de last always ✅
+- Each element (except for the map) can be set in any order in the file ✅
+- There must be exact 6 elements in the file ✅
+- Elements cannot be repeated ✅
+- Except for the map, each type of info from an element can be separated by one or more spaces ✅
 
-- Except for the map, each type of info from an element can be separated by one or more spaces
+Regarding textures:
+- Check extention
+- Check if exists
+-> What if textures path have an empty space? This should be allowed, right?
+
+Regarding colors:
+- Are separateb by ","
+- Can be separated by spaces
+- Must be positive (don't allow + or -) -> Allow only numeric values
 
 Regarding map:
 - Surrounded by walls
 - One player exactly
+-> Create a function that checks if all members of a string are part of a set ("10 NSEW")

@@ -36,6 +36,11 @@
 # define ERR_WRONG_POS "Wrong map position or missing element in .cub file"
 # define ERR_INVALID_ELEMENT "Invalid element. Expected: NO, SO, WE, EA, F, C"
 # define ERR_EMPTY_FILE "The provided .cub file is empty"
+# define ERR_MISSING_ELEMS "Missing elements in file"
+# define ERR_DUPL_ELEM "One or more elements duplicated in .cub file"
+
+// Function failure because of malloc error messages
+# define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"
 
 # ifndef PI
 #  define PI 3.14159265358979323846

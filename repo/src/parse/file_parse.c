@@ -5,27 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 11:17:52 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/18 11:17:52 by erde-la-         ###   ########.fr       */
+/*   Created: 2025/07/21 14:37:17 by erde-la-          #+#    #+#             */
+/*   Updated: 2025/07/21 14:37:17 by erde-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static bool	is_empty_file(char *path)
-{
-	int		file_fd;
-	char	buffer;
-
-	file_fd = open(path, O_RDONLY);
-	if (read(file_fd, &buffer, 1) == 0)
-	{
-		close(file_fd);
-		return (true);
-	}
-	close(file_fd);
-	return (false);
-}
 
 // Check if passed line is a valid file element (except for the map)
 static bool	is_valid_elem_type(char *elem)
@@ -48,37 +33,25 @@ static bool	is_valid_elem_type(char *elem)
 		return (false);
 }
 
-static int	set_elems_in_arr(char **elems, int *file_fd)
+bool	is_empty_file(char *path)
 {
-	int		i;
-	char	*line;
+	int		file_fd;
+	char	buffer;
 
-	i = 0;
-	line = get_next_line(*file_fd);
-	while (line && i < 6)
+	file_fd = open(path, O_RDONLY);
+	if (read(file_fd, &buffer, 1) == 0)
 	{
-		if (ft_strnstr_exact(line, "\r\n", 2)
-			|| ft_strnstr_exact(line, "\n", 1))
-		{
-			ft_safe_free((void **)&line);
-			line = get_next_line(*file_fd);
-			continue ;
-		}
-		elems[i] = ft_strtrim(line, "\n\r ");
-		if (elems[i] == NULL)
-			return (free_elems_arr_at_malloc_err(elems, i), close(*file_fd), 1);
-		ft_safe_free((void **)&line);
-		line = get_next_line(*file_fd);
-		i++;
+		close(file_fd);
+		return (true);
 	}
-	ft_safe_free((void **)&line);
-	elems[i] = NULL;
-	return (0);
+	close(file_fd);
+	return (false);
 }
 
 // Check if map position is right in the file
 // Check if elements are the right ones
-static bool	valid_map_position_and_elems(char **elems, int *file_fd)
+// Check if file has exactly 6 elements
+bool	valid_map_position_and_elems(char **elems, int *file_fd)
 {
 	int	i;
 
@@ -91,31 +64,49 @@ static bool	valid_map_position_and_elems(char **elems, int *file_fd)
 				puterror(ERR_WRONG_POS);
 			else
 				puterror(ERR_INVALID_ELEMENT);
-			free_elems_arr_at_malloc_err(elems, 6);
+			reach_EOF(file_fd);
 			close (*file_fd);
+			free_elems_arr_at_malloc_err(elems, 6);
 			return (false);
 		}
 		i++;
 	}
+	if (i != 6)
+	{
+		free_elems_arr_at_malloc_err(elems, 6);
+		puterror(ERR_MISSING_ELEMS);
+		return (reach_EOF(file_fd), close (*file_fd), false);
+	}
 	return (true);
 }
 
-// TODO: remember to read the file till the end to avoid leaks of the static variable
-// TODO: for some reason, the subject_example.cub map is throwing an error...
-int	parse_input_file(t_game *game, char *path)
+// Returns true if there is at least one element duplicated
+// Fill the t_game struct with the elems if everything right
+bool	check_duplicate_elems(t_game *game, char **elems, int *fd)
 {
-	int		file_fd;
-	char	*elems[7];
+	int	i;
 
-	file_fd = open(path, O_RDONLY);
-	if (is_empty_file(path) == true)
-		return (error_free_status(ERR_EMPTY_FILE, game, 1));
-	if (set_elems_in_arr(elems, &file_fd) == 1)
-		return (error_free_status("set_elems_in_arr function failed", game, 1));
-	if (valid_map_position_and_elems(elems, &file_fd) == false)
-		return (free_game(game), 1);
-	// TODO: afterwards, assign each element to the corresponding value in the game struct. If there is already an element assigned to the struct, that would mean that the elements are repeated
-	// TODO: careful in case of errors in file to close this where needed
-	close (file_fd);
-	return (0);
+	i = -1;
+	while (elems[++i])
+	{
+		if (ft_strnstr(elems[i], "NO", 2) && !game->NO_texture)
+			game->NO_texture = ft_strtrim((elems[i] + 2), " ");
+		else if (ft_strnstr(elems[i], "SO", 2) && !game->SO_texture)
+			game->SO_texture = ft_strtrim((elems[i] + 2), " ");
+		else if (ft_strnstr(elems[i], "WE", 2) && !game->WE_texture)
+			game->WE_texture = ft_strtrim((elems[i] + 2), " ");
+		else if (ft_strnstr(elems[i], "EA", 2) && !game->EA_texture)
+			game->EA_texture = ft_strtrim((elems[i] + 2), " ");
+		else if (ft_strnstr(elems[i], "F", 1) && !game->F_color_str)
+			game->F_color_str = ft_strtrim((elems[i] + 1), " ");
+		else if (ft_strnstr(elems[i], "C", 1) && !game->C_color_str)
+			game->C_color_str = ft_strtrim((elems[i] + 1), " ");
+		else
+		{
+			free_elems_arr_at_malloc_err(elems, 6);
+			return (reach_EOF(fd), close(*fd), puterror(ERR_DUPL_ELEM), true);
+		}
+	}
+	free_elems_arr_at_malloc_err(elems, 6);
+	return (false);
 }

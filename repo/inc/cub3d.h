@@ -34,8 +34,8 @@ typedef struct s_game
 	char *SO_texture;
 	char *WE_texture;
 	char *EA_texture;
-	char *F_color;
-	char *C_color;
+	char *F_color_str;
+	char *C_color_str;
 }	t_game;
 
 // Functions
@@ -44,6 +44,10 @@ t_game	*init_game_struct(void);
 // Parsing
 bool	check_input_file(int argc, char *file_path);
 int		parse_input_file(t_game *game, char *path);
+bool	is_empty_file(char *path);
+bool	valid_map_position_and_elems(char **elems, int *file_fd);
+bool	check_duplicate_elems(t_game *game, char **elems, int *file_fd);
+void	reach_EOF(int	*file_fd);
 
 // Errors
 void	puterror(char *message);
