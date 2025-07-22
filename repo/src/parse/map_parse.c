@@ -78,19 +78,51 @@ static int	get_raw_map_arr(t_game *game)
 	close (fd);
 	return (0);
 }
-	/*
-	TODO:
-	To know if there are empty spaces between the map and another element after the map (invalid file then), scan the map till the point where the lines are not only "10 NSEW". From there, check the map till the end. If only \n, then the map is correct and I will have to clean those /n later on. If not only \n, throw error and exit program
-	*/
 
+static void	clean_line_jumps(t_parse parse)
+{
+	char	*clean_str;
+	int		i;
+	size_t	len;
 
-// TODO: close the fd and reach EOF inside this function
+	i = 0;
+	while (parse.raw_map[i])
+	{
+		len = 0;
+		while (parse.raw_map[i][len]
+			&& parse.raw_map[i][len] != '\n'
+			&& parse.raw_map[i][len] != '\r')
+			len++;
+		clean_str = ft_substr(parse.raw_map[i], 0, len);
+		ft_safe_free((void **)&parse.raw_map[i]);
+		parse.raw_map[i] = clean_str;
+		i++;
+	}
+}
+
 bool	is_valid_map(t_game *game, int file_fd)
 {
 	if (count_map_lines(game, file_fd) == false)
 		return (false);
 	if (get_raw_map_arr(game) == 1)
 		return (false);
-	// ft_put_str_arr(game->parse.raw_map);
+	clean_line_jumps(game->parse);
+	ft_put_str_arr(game->parse.raw_map);
 	return (true);
 }
+
+// static bool	is_map_clean()
+// {
+// 	/*
+// 		TODO:
+// 		1. Only following characters in each line: "1 0NSEW"
+// 		2. Check if there is no line jump between the lines of the map -> keep the prev line and the current line for this and see if prev line is a valid map line and the current one is empty. If the current one is empty, check if the rest of the file has more valid map lines. If yes, throw error.
+// 		3. Erase al empty lines of the end of the file, leaving just the map array
+// 		4. Change all empty spaces by 00
+// 		5. At some point, get map height and length (length == longest line) -> Thinner lines should get ceros at the end to make the map rectangle
+// 	*/
+// }
+	/*
+	TODO:
+	To know if there are empty spaces between the map and another element after the map (invalid file then), scan the map till the point where the lines are not only "10 NSEW". From there, check the map till the end. If only \n, then the map is correct and I will have to clean those /n later on. If not only \n, throw error and exit program
+	*/
