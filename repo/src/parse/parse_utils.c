@@ -10,17 +10,85 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 // Intended to avoid leaks in the gnl if EOF isn't reached
-void	reach_EOF(int	*file_fd)
+void	reach_eof(int	file_fd)
 {
 	char	*line;
 
-	line = get_next_line(*file_fd);
+	line = get_next_line(file_fd);
 	while (line)
 	{
 		ft_safe_free((void **)&line);
-		line = get_next_line(*file_fd);
+		line = get_next_line(file_fd);
 	}
+}
+
+int	get_file_len(char *path)
+{
+	int		count;
+	int		fd;
+	char	*line;
+
+	fd = open(path, O_RDONLY);
+	count = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		count++;
+		ft_safe_free((void **)&line);
+		line = get_next_line(fd);
+	}
+	ft_safe_free((void **)&line);
+	close (fd);
+	return (count);
+}
+
+bool	all_chars_in_set(const char *str, const char *set)
+{
+	size_t	i;
+	size_t	j;
+	bool	found;
+
+	if (!str || !set)
+		return (false);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		found = false;
+		j = 0;
+		while (set[j] != '\0')
+		{
+			if (str[i] == set[j])
+			{
+				found = true;
+				break ;
+			}
+			j++;
+		}
+		if (!found)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+//Read file, skipping \n and returning the next content line
+char	*get_next_valid_line(int file_fd)
+{
+	char	*line;
+
+	line = get_next_line(file_fd);
+	while (line)
+	{
+		if (ft_strnstr_exact(line, "\r\n", 2) || ft_strnstr_exact(line, "\n", 1))
+		{
+			ft_safe_free((void **)&line);
+			line = get_next_line(file_fd);
+			continue ;
+		}
+		break ;
+	}
+	return (line);
 }

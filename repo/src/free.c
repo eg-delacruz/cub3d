@@ -18,13 +18,15 @@ void	free_elems_arr_at_malloc_err(char **elems, size_t iterator)
 		ft_safe_free((void **)&(elems[--iterator]));
 }
 
+// TODO: free raw_map array here? -> name it map and just replace it with the cleaned version later on?
 void	free_game(t_game *game)
 {
 	ft_safe_free((void **)&game->NO_texture);
 	ft_safe_free((void **)&game->SO_texture);
 	ft_safe_free((void **)&game->WE_texture);
 	ft_safe_free((void **)&game->EA_texture);
-	ft_safe_free((void **)&game->F_color);
-	ft_safe_free((void **)&game->C_color);
+	ft_safe_free((void **)&game->parse.F_color_str);
+	ft_safe_free((void **)&game->parse.C_color_str);
+	ft_free_split(game->parse.raw_map);
 	ft_safe_free((void **)&game);
 }

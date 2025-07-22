@@ -38,6 +38,9 @@
 # define ERR_EMPTY_FILE "The provided .cub file is empty"
 # define ERR_MISSING_ELEMS "Missing elements in file"
 # define ERR_DUPL_ELEM "One or more elements duplicated in .cub file"
+# define ERR_NO_MAP "No map provided in the .cub file"
+# define ERR_ELEMS_BEFORE_MAP "Only newlines allowed between elements and map"
+# define ERR_WRONG_MAP_1 "Invalid element before map or invalid map"
 
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"

@@ -12,34 +12,85 @@
 
 # include "cub3d.h"
 
-static void	get_map_from_file(t_game *game, int *file_fd)
+// Returns false if ther is something wrong with map
+static bool	count_map_lines(t_game *game, int file_fd)
 {
-	(void)game;
 	char	*line;
 
-	line = get_next_line(*file_fd);
+	line = get_next_valid_line(file_fd);
+	if (line == NULL)
+		return (puterror(ERR_NO_MAP), false);
+	if (all_chars_in_set(line, " \n\r") == true
+		|| all_chars_in_set(line, " \n") == true)
+		return (puterror(ERR_ELEMS_BEFORE_MAP), false);
+	if (all_chars_in_set(line, "1 \n\r") == false)
+		return (puterror(ERR_WRONG_MAP_1), false);
 	while (line)
 	{
-		if (ft_strnstr_exact(line, "\r\n", 2) || ft_strnstr_exact(line, "\n", 1))
-		{
-			ft_safe_free((void **)&line);
-			line = get_next_line(*file_fd);
-			continue ;
-		}
+		game->parse.map_till_eof_lines++;
+		ft_safe_free((void **)&line);
+		line = get_next_line(file_fd);
 	}
-
-	/*
-	TODO:
-	1. Count remaining lines from here till the end
-	1.1. If current line from previous loop is still not EOL (NULL), start the count at/add +1 to the count
-	2. Create a struct called parse, to keep all the data that is only needed for the parse. This way, the game struct will only have useful data for the execution. Parse will have to have the char * of the colors, since JP needs them as ints in arrays. It will also have the count of the file size in rows, to be able to keep track of the line where the map starts.
-	3. From this point on, I will have to scan the file till the end to know the remaining lines and create the array accordingly. I will also need the total rows of the file to know where I need to reposition the reading to actually copy the map in the array. To know if there are empty spaces between the map and another element after the map (invalid file then), scan the map till the point where the lines are not only "10 NSEW". From there, check the map till the end. If only \n, then the map is correct and I will have to clean those /n later on. If not only \n, throw error and exit program
-	*/
+	close (file_fd);
+	return (true);
 }
 
-// TODO: close the fd and reach EOF inside this function
-bool	is_valid_map(t_game *game, int *file_fd)
+static void	skip_previos_map_lines(int fd, t_game *game)
 {
-	get_map_from_file(game, file_fd);
+	char	*line;
+	int		i;
+	int		first_map_line_pos;
+
+	line = get_next_line(fd);
+	i = 0;
+	first_map_line_pos = game->parse.file_lines - game->parse.map_till_eof_lines;
+	while (line && i < (first_map_line_pos - 1))
+	{
+		ft_safe_free((void **)&line);
+		line = get_next_line(fd);
+		i++;
+	}
+	ft_safe_free((void **)&line);
+}
+
+static int	get_raw_map_arr(t_game *game)
+{
+	int		fd;
+	char	*line;
+	int		i;
+	int		map_height;
+
+	fd = open(game->parse.file_path, O_RDONLY);
+	skip_previos_map_lines(fd, game);
+	map_height = game->parse.map_till_eof_lines;
+	game->parse.raw_map = malloc(sizeof(char *) * (map_height + 1));
+	if (!game->parse.raw_map)
+		return (1);
+	line = get_next_line(fd);
+	i = 0;
+	while (line)
+	{
+		game->parse.raw_map[i] = line;
+		line = get_next_line(fd);
+		i++;
+	}
+	game->parse.raw_map[i] = NULL;
+	close (fd);
+	return (0);
+}
+	/*
+	TODO:
+	To know if there are empty spaces between the map and another element after the map (invalid file then), scan the map till the point where the lines are not only "10 NSEW". From there, check the map till the end. If only \n, then the map is correct and I will have to clean those /n later on. If not only \n, throw error and exit program
+	*/
+
+
+// TODO: close the fd and reach EOF inside this function
+bool	is_valid_map(t_game *game, int file_fd)
+{
+	if (count_map_lines(game, file_fd) == false)
+		return (false);
+	if (get_raw_map_arr(game) == 1)
+		return (false);
+	// ft_put_str_arr(game->parse.raw_map);
 	return (true);
 }

@@ -51,7 +51,7 @@ bool	is_empty_file(char *path)
 // Check if map position is right in the file
 // Check if elements are the right ones
 // Check if file has exactly 6 elements
-bool	valid_map_position_and_elems(char **elems, int *file_fd)
+bool	valid_map_position_and_elems(char **elems, int file_fd)
 {
 	int	i;
 
@@ -64,8 +64,8 @@ bool	valid_map_position_and_elems(char **elems, int *file_fd)
 				puterror(ERR_WRONG_POS);
 			else
 				puterror(ERR_INVALID_ELEMENT);
-			reach_EOF(file_fd);
-			close (*file_fd);
+			reach_eof(file_fd);
+			close (file_fd);
 			free_elems_arr_at_malloc_err(elems, 6);
 			return (false);
 		}
@@ -75,14 +75,14 @@ bool	valid_map_position_and_elems(char **elems, int *file_fd)
 	{
 		free_elems_arr_at_malloc_err(elems, 6);
 		puterror(ERR_MISSING_ELEMS);
-		return (reach_EOF(file_fd), close (*file_fd), false);
+		return (reach_eof(file_fd), close (file_fd), false);
 	}
 	return (true);
 }
 
 // Returns true if there is at least one element duplicated
 // Fill the t_game struct with the elems if everything right
-bool	check_duplicate_elems(t_game *game, char **elems, int *fd)
+bool	check_duplicate_elems(t_game *game, char **elems, int fd)
 {
 	int	i;
 
@@ -97,14 +97,14 @@ bool	check_duplicate_elems(t_game *game, char **elems, int *fd)
 			game->WE_texture = ft_strtrim((elems[i] + 2), " ");
 		else if (ft_strnstr(elems[i], "EA", 2) && !game->EA_texture)
 			game->EA_texture = ft_strtrim((elems[i] + 2), " ");
-		else if (ft_strnstr(elems[i], "F", 1) && !game->F_color_str)
-			game->F_color_str = ft_strtrim((elems[i] + 1), " ");
-		else if (ft_strnstr(elems[i], "C", 1) && !game->C_color_str)
-			game->C_color_str = ft_strtrim((elems[i] + 1), " ");
+		else if (ft_strnstr(elems[i], "F", 1) && !game->parse.F_color_str)
+			game->parse.F_color_str = ft_strtrim((elems[i] + 1), " ");
+		else if (ft_strnstr(elems[i], "C", 1) && !game->parse.C_color_str)
+			game->parse.C_color_str = ft_strtrim((elems[i] + 1), " ");
 		else
 		{
 			free_elems_arr_at_malloc_err(elems, 6);
-			return (reach_EOF(fd), close(*fd), puterror(ERR_DUPL_ELEM), true);
+			return (reach_eof(fd), close(fd), puterror(ERR_DUPL_ELEM), true);
 		}
 	}
 	free_elems_arr_at_malloc_err(elems, 6);

@@ -28,14 +28,26 @@
 
 # include "defines.h"
 
+typedef struct s_parse
+{
+	int		file_lines;
+	int		map_till_eof_lines;
+	char	*file_path;
+	// TODO: remember to free these two when parse concludes/when needed
+	char 	*F_color_str;
+	char 	*C_color_str;
+	char	**raw_map;
+}	t_parse;
+
 typedef struct s_game
 {
-	char *NO_texture;
-	char *SO_texture;
-	char *WE_texture;
-	char *EA_texture;
-	char *F_color_str;
-	char *C_color_str;
+	t_parse	parse;
+	char	*NO_texture;
+	char	*SO_texture;
+	char	*WE_texture;
+	char	*EA_texture;
+	// char 	*F_color_str;
+	// char 	*C_color_str;
 }	t_game;
 
 // Functions
@@ -45,9 +57,13 @@ t_game	*init_game_struct(void);
 bool	check_input_file(int argc, char *file_path);
 int		parse_input_file(t_game *game, char *path);
 bool	is_empty_file(char *path);
-bool	valid_map_position_and_elems(char **elems, int *file_fd);
-bool	check_duplicate_elems(t_game *game, char **elems, int *file_fd);
-void	reach_EOF(int	*file_fd);
+int		get_file_len(char *path);
+bool	valid_map_position_and_elems(char **elems, int file_fd);
+bool	check_duplicate_elems(t_game *game, char **elems, int fd);
+void	reach_eof(int file_fd);
+bool	is_valid_map(t_game *game, int file_fd);
+char	*get_next_valid_line(int file_fd);
+bool	all_chars_in_set(const char *str, const char *set);
 
 // Errors
 void	puterror(char *message);
