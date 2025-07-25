@@ -24,6 +24,10 @@ t_game *init_game_struct(void)
 	game->SO_texture = NULL;
 	game->WE_texture = NULL;
 	game->EA_texture = NULL;
+	game->map_height = 0;
+	game->map_length = 0;
+
+	//
 	game->parse.C_color_str = NULL;
 	game->parse.F_color_str = NULL;
 	game->parse.file_path = NULL;

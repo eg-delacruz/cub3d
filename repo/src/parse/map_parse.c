@@ -106,8 +106,14 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (get_raw_map_arr(game) == 1)
 		return (false);
+	if (are_valid_map_elements(game->parse.raw_map) == false)
+		return (false);
 	clean_line_jumps(game->parse);
-	ft_put_str_arr(game->parse.raw_map);
+	if (is_map_divided(game) == true)
+		return (false);
+	printf("%d\n", game->map_height);
+	//Check map_valid height and length
+	// ft_put_str_arr(game->parse.raw_map);
 	return (true);
 }
 
@@ -115,7 +121,7 @@ bool	is_valid_map(t_game *game, int file_fd)
 // {
 // 	/*
 // 		TODO:
-// 		1. Only following characters in each line: "1 0NSEW"
+// 		1. Only following characters in each line: "1 0NSEW" ✅
 // 		2. Check if there is no line jump between the lines of the map -> keep the prev line and the current line for this and see if prev line is a valid map line and the current one is empty. If the current one is empty, check if the rest of the file has more valid map lines. If yes, throw error.
 // 		3. Erase al empty lines of the end of the file, leaving just the map array
 // 		4. Change all empty spaces by 00
