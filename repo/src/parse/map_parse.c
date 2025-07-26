@@ -111,9 +111,9 @@ bool	is_valid_map(t_game *game, int file_fd)
 	clean_line_jumps(game->parse);
 	if (is_map_divided(game) == true)
 		return (false);
-	printf("%d\n", game->map_height);
-	//Check map_valid height and length
-	// ft_put_str_arr(game->parse.raw_map);
+	// Get clean map and save it in game -> to avoid having empty lines after the actuall map array
+	// Check map_valid length
+	// Change all empty spaces by 00 here? Or after floodfill?
 	return (true);
 }
 
@@ -121,14 +121,8 @@ bool	is_valid_map(t_game *game, int file_fd)
 // {
 // 	/*
 // 		TODO:
-// 		1. Only following characters in each line: "1 0NSEW" ✅
-// 		2. Check if there is no line jump between the lines of the map -> keep the prev line and the current line for this and see if prev line is a valid map line and the current one is empty. If the current one is empty, check if the rest of the file has more valid map lines. If yes, throw error.
-// 		3. Erase al empty lines of the end of the file, leaving just the map array
+
 // 		4. Change all empty spaces by 00
 // 		5. At some point, get map height and length (length == longest line) -> Thinner lines should get ceros at the end to make the map rectangle
 // 	*/
 // }
-	/*
-	TODO:
-	To know if there are empty spaces between the map and another element after the map (invalid file then), scan the map till the point where the lines are not only "10 NSEW". From there, check the map till the end. If only \n, then the map is correct and I will have to clean those /n later on. If not only \n, throw error and exit program
-	*/
