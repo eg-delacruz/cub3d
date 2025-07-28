@@ -111,6 +111,9 @@ bool	is_valid_map(t_game *game, int file_fd)
 	clean_line_jumps(game->parse);
 	if (is_map_divided(game) == true)
 		return (false);
+	if (get_clean_map(game))
+		return (false);
+	ft_put_str_arr(game->map);
 	// Get clean map and save it in game -> to avoid having empty lines after the actuall map array
 	// Check map_valid length
 	// Change all empty spaces by 00 here? Or after floodfill?

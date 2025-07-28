@@ -47,6 +47,7 @@
 
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"
+# define ERR_CLEAN_MAP "get_clean_map() function failed"
 
 # ifndef PI
 #  define PI 3.14159265358979323846

@@ -28,5 +28,6 @@ void	free_game(t_game *game)
 	ft_safe_free((void **)&game->parse.F_color_str);
 	ft_safe_free((void **)&game->parse.C_color_str);
 	ft_free_split(game->parse.raw_map);
+	ft_free_split(game->map);
 	ft_safe_free((void **)&game);
 }

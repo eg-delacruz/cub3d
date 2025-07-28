@@ -59,3 +59,26 @@ bool	is_map_divided(t_game *game)
 	}
 	return (false);
 }
+
+int	get_clean_map(t_game *game)
+{
+	int	i;
+
+	game->map = malloc(sizeof(char *) * (game->map_height + 1));
+	if (!game->map)
+		return (1);
+	i = 0;
+	while (game->parse.raw_map[i])
+	{
+		game->map[i] = ft_strdup(game->parse.raw_map[i]);
+		if (!game->map[i])
+		{
+			free_elems_arr_at_malloc_err(game->map, i);
+			puterror(ERR_CLEAN_MAP);
+			return (1);
+		}
+		i++;
+	}
+	game->map[i] = NULL;
+	return (0);
+}

@@ -48,6 +48,7 @@ typedef struct s_game
 	char	*EA_texture;
 	int		map_height;
 	int		map_length;
+	char	**map;
 }	t_game;
 
 // Functions
@@ -66,6 +67,7 @@ char	*get_next_valid_line(int file_fd);
 bool	all_chars_in_set(const char *str, const char *set);
 bool	are_valid_map_elements(char **raw_map);
 bool	is_map_divided(t_game *game);
+int		get_clean_map(t_game *game);
 
 // Errors
 void	puterror(char *message);

@@ -106,7 +106,7 @@ valgrind: libmlx $(NAME)
 clean:
 	@printf "🧼 Cleaning .o files! 🫧\n"
 	# TODO: uncomment this
-	# @rm -rfd $(MLX42_DIR)/build
+# 	# @rm -rfd $(MLX42_DIR)/build
 	@rm -rfd $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 
@@ -114,8 +114,8 @@ fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 	# TODO: uncomment this
-	# @echo "rm -rfd $(MLX42_DIR)"
-	@rm -rfd ${MLX42_DIR}
+# 	# @echo "rm -rfd $(MLX42_DIR)"
+# 	@rm -rfd ${MLX42_DIR}
 
 test:
 	@echo "$(LIB_DIR)"
