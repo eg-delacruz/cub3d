@@ -111,10 +111,11 @@ bool	is_valid_map(t_game *game, int file_fd)
 	clean_line_jumps(game->parse);
 	if (is_map_divided(game) == true)
 		return (false);
-	if (get_clean_map(game))
+	if (get_clean_map(game) == 1)
 		return (false);
-	ft_put_str_arr(game->map);
-	// Get clean map and save it in game -> to avoid having empty lines after the actuall map array
+	if (map_valid_dimentions(game) == 1)
+		return (false);
+	// ft_put_str_arr(game->map);
 	// Check map_valid length
 	// Change all empty spaces by 00 here? Or after floodfill?
 	return (true);
@@ -125,7 +126,6 @@ bool	is_valid_map(t_game *game, int file_fd)
 // 	/*
 // 		TODO:
 
-// 		4. Change all empty spaces by 00
 // 		5. At some point, get map height and length (length == longest line) -> Thinner lines should get ceros at the end to make the map rectangle
 // 	*/
 // }

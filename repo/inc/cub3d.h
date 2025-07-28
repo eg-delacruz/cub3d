@@ -68,6 +68,7 @@ bool	all_chars_in_set(const char *str, const char *set);
 bool	are_valid_map_elements(char **raw_map);
 bool	is_map_divided(t_game *game);
 int		get_clean_map(t_game *game);
+int		map_valid_dimentions(t_game *game);
 
 // Errors
 void	puterror(char *message);

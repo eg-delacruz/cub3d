@@ -82,3 +82,27 @@ int	get_clean_map(t_game *game)
 	game->map[i] = NULL;
 	return (0);
 }
+
+int	map_valid_dimentions(t_game *game)
+{
+	int	length;
+	int	tmp_length;
+	int	i;
+
+	length = 0;
+	i = 0;
+	while (game->map[i])
+	{
+		tmp_length = ft_strlen(game->map[i]);
+		if (tmp_length > length)
+			length = tmp_length;
+		i++;
+	}
+	game->map_length = length;
+	if (game->map_height <= 2 || game->map_length <= 2)
+	{
+		puterror(ERR_MAP_SMALL);
+		return (1);
+	}
+	return (0);
+}
