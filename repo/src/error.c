@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:14:43 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/15 23:14:43 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/07/22 00:10:43 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	puterror(char *message)
 {
-	ft_putstr_fd(R, 2);
+	ft_putstr_fd(RED, 2);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(message, 2);
 	ft_putendl_fd(RST, 2);
