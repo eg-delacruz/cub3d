@@ -1,0 +1,40 @@
+#include "cub3d.h"
+
+void	close_hook(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	mlx_close_window(game->mlx);
+}
+
+void 	key_hook(mlx_key_data_t keydata, void *param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		return (close_hook(param));
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{
+		if (keydata.key == MLX_KEY_W)
+			return (move_player(game, UP));
+		if (keydata.key == MLX_KEY_S)
+			return (move_player(game, DOWN));
+		if (keydata.key == MLX_KEY_A)
+			return (strafe_player(game, LEFT));
+		if (keydata.key == MLX_KEY_D)
+			return (strafe_player(game, RIGHT));
+		if (keydata.key == MLX_KEY_RIGHT)
+			return (rotate_player(game, RIGHT_ROT));
+		if (keydata.key == MLX_KEY_LEFT)
+			return (rotate_player(game, LEFT_ROT));
+	}
+}
+
+//  TODO: Hacer hook del cursor y mejorar close_hook;
+void	setup_hooks(t_game *game)
+{
+	mlx_key_hook(game->mlx, key_hook, game);
+}
