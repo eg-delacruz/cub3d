@@ -23,7 +23,15 @@ INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
 LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 
 
-SRC = main.c /parse/check_input_file_name.c error.c
+SRC = main.c \
+	error.c \
+	/parse/check_input_file_name.c \
+	/game/raycasting.c \
+	/game/hooks.c \
+	/game/color.c \
+	/game/draw.c \
+	/player/movement.c \
+	/player/utils.c
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
