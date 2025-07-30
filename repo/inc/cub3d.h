@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/30 00:54:20 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/07/31 00:11:57 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,40 @@
 // Functions
 
 // Parsing
-bool	check_input_file_name(int argc, char * file_path);
+bool		check_input_file_name(int argc, char * file_path);
 
 // Errors
-void	puterror(char *message);
-int		puterr_status(char *message, int status);
+void		puterror(char *message);
+int			puterr_status(char *message, int status);
 
 // Game graphics
-void 	raycasting(t_game *game);
-void	draw_ver_line(t_game *game, int x, int start, int end, int32_t color);
+void 		raycasting(t_game *game);
+void		draw_ver_line(t_game *game, int x, int start, int end, int32_t color);
 
 // Game utils
-bool	init_mlx(t_game	*game);
-int		**create_map(void);
+bool		init_mlx(t_game	*game);
+int			**create_map(void);
 t_player	*init_player(void);
-void	setup_game(t_game *game);
+void		setup_game(t_game *game);
 
 // Colors
-int32_t	get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t		get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t		get_r(int32_t rgba);
+int32_t		get_g(int32_t rgba);
+int32_t		get_b(int32_t rgba);
+int32_t		get_a(int32_t rgba);
+
 
 // Player movement and rotation
-void 	rotate_player(t_game *game, t_key_mov key);
-void 	move_player(t_game *game, t_key_mov key);
-void 	strafe_player(t_game *game, t_key_mov key);
+void 		rotate_player(t_game *game, t_key_mov key);
+void 		move_player(t_game *game, t_key_mov key);
+void 		strafe_player(t_game *game, t_key_mov key);
 
 // Player utils
-bool 	is_wall_collision(t_map map, double y, double x, double radius);
-void	show_player(t_player *player);
+bool 		is_wall_collision(t_map map, double y, double x, double radius);
+void		show_player(t_player *player);
 
 // Hooks
-void	setup_hooks(t_game *game);
+void		setup_hooks(t_game *game);
 
 #endif /* cub3d.h */
