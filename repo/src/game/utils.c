@@ -91,7 +91,7 @@ t_player	*init_player(void)
 	player->map_pos[Y] = (int)player->screen_pos[Y];
 	player->radius = 0.3;
 	player->speed_mov = 0.33;
-	player->speed_rot = 0.0001;
+	player->speed_rot = 0.001;
 
 	return (player);
 }
@@ -102,4 +102,14 @@ void	setup_game(t_game *game)
 	game->ceiling_color = get_rgba(52, 204, 235, 255);
 	game->floor_color = get_rgba(64, 50, 40, 255);
 	game->worldMap = create_map();
+	game->cursor_blocked = false;
+}
+
+void	rotate_dvector(t_dvector *vec, double rot)
+{
+	double	old_x;
+
+	old_x = (*vec)[X];
+	(*vec)[X] = (*vec)[X] * cos(rot) - (*vec)[Y] * sin(rot);
+	(*vec)[Y] = old_x * sin(rot) + (*vec)[Y] * cos(rot);
 }
