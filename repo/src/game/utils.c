@@ -89,7 +89,7 @@ t_player	*init_player(void)
 	player->screen_pos[Y] = 3.0;
 	player->map_pos[X] = (int)player->screen_pos[X];
 	player->map_pos[Y] = (int)player->screen_pos[Y];
-	player->radius = 0.5;
+	player->radius = 0.3;
 	player->speed_mov = 0.33;
 	player->speed_rot = 0.0001;
 
