@@ -8,14 +8,32 @@ void	close_hook(void *param)
 	mlx_close_window(game->mlx);
 }
 
-void 	key_hook(mlx_key_data_t keydata, void *param)
+void	block_cursor(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
+	if (!game->cursor_blocked)
+	{
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+		game->cursor_blocked = true;
+	}
+	else
+	{
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+		game->cursor_blocked = false;
+	}
+}
 
+void	key_hook(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		return (close_hook(param));
+	if (keydata.key == MLX_KEY_C && keydata.action == MLX_RELEASE)
+		return (block_cursor(param));
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_W)
@@ -33,8 +51,28 @@ void 	key_hook(mlx_key_data_t keydata, void *param)
 	}
 }
 
+void	mouse_move(double xpos, double ypos, void *param)
+{
+	t_game			*game;
+	static double	last_x;
+	double			rot;
+
+	game = (t_game *)param;
+	last_x = SCREEN_W / 2;
+	if (!game->cursor_blocked)
+		return ;
+	rot = (xpos - last_x) * game->player->speed_rot;
+	rotate_dvector(&game->player->curr_dir, rot);
+	rotate_dvector(&game->player->plane, rot);
+	(void)ypos;
+	last_x = xpos;
+	mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);
+	raycasting(game);
+}
+
 //  TODO: Hacer hook del cursor y mejorar close_hook;
 void	setup_hooks(t_game *game)
 {
 	mlx_key_hook(game->mlx, key_hook, game);
+	mlx_cursor_hook(game->mlx, mouse_move, game);
 }
