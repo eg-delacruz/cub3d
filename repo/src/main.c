@@ -6,16 +6,11 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 22:59:02 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/30 00:52:22 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/07/31 00:13:46 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <MLX42/MLX42.h>
-
 
 int32_t main(int argc, char *args[])
 {
@@ -24,18 +19,14 @@ int32_t main(int argc, char *args[])
 
 	if (!init_mlx(&game))
 		return (EXIT_FAILURE);
-	setup_game(&game);
-	setup_hooks(&game);
+	(setup_game(&game), setup_hooks(&game));
 	int i, j;
 	i = 0;
 	while (i < MAP_H)
 	{
-		j = 0;
-		while (j < MAP_W)
-		{
+		j = -1;
+		while (++j < MAP_W)
 			printf("%d ", game.worldMap[i][j]);
-			j++;
-		}
 		printf("\n");
 		i++;
 	}
