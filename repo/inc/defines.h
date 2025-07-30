@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/29 20:11:30 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/07/31 01:08:09 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_game
 	t_map		worldMap;
 	int32_t		ceiling_color;
 	int32_t		floor_color;
+	bool		cursor_blocked;
 }	t_game;
 
 
