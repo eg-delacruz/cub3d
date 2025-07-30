@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/31 00:11:57 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/07/31 01:47:15 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool		init_mlx(t_game	*game);
 int			**create_map(void);
 t_player	*init_player(void);
 void		setup_game(t_game *game);
+void		rotate_dvector(t_dvector *vec, double rot);
 
 // Colors
 int32_t		get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
