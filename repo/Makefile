@@ -30,6 +30,7 @@ SRC = main.c \
 	/game/hooks.c \
 	/game/color.c \
 	/game/draw.c \
+	/game/utils.c \
 	/player/movement.c \
 	/player/utils.c
 
