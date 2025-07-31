@@ -74,17 +74,14 @@ int		**create_map(void)
 	return (map);
 }
 
-t_player	*init_player(void)
+t_player	*init_player(t_direction init_dir)
 {
 	t_player	*player;
 
 	player = (t_player	*)malloc(sizeof(t_player));
 
-	player->curr_dir[X] = 1;
-	player->curr_dir[Y] = 0;
-	player->fov = 66;
-	player->plane[X] = 0;
-	player->plane[Y] = 0.66;
+	player->fov = FOV;
+	set_player_dir(player, init_dir);
 	player->screen_pos[X] = 3.0;
 	player->screen_pos[Y] = 3.0;
 	player->map_pos[X] = (int)player->screen_pos[X];
@@ -98,18 +95,10 @@ t_player	*init_player(void)
 
 void	setup_game(t_game *game)
 {
-	game->player = init_player();
+	game->player = init_player(WE);
 	game->ceiling_color = get_rgba(52, 204, 235, 255);
 	game->floor_color = get_rgba(64, 50, 40, 255);
 	game->worldMap = create_map();
 	game->cursor_blocked = false;
 }
 
-void	rotate_dvector(t_dvector *vec, double rot)
-{
-	double	old_x;
-
-	old_x = (*vec)[X];
-	(*vec)[X] = (*vec)[X] * cos(rot) - (*vec)[Y] * sin(rot);
-	(*vec)[Y] = old_x * sin(rot) + (*vec)[Y] * cos(rot);
-}
