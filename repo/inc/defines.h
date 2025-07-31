@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/31 01:08:09 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/07/31 15:27:31 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define Y 1
 # define COS 0
 # define SIN 1
+
+// Field of View
+# define FOV 66
 
 #define SCREEN_W 640
 #define SCREEN_H 480
