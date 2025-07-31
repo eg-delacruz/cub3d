@@ -27,3 +27,32 @@ void	show_player(t_player *player)
 	printf("plane = { %f , %f }\n", player->plane[X], player->plane[Y]);
 	printf("radius = %f, speed_mov = %f, speed_rot = %f\n", player->radius, player->speed_mov, player->speed_rot);
 }
+
+void	set_player_dir(t_player	*player, t_direction init_dir)
+{
+	double	fov;
+
+	fov = player->fov / 100;
+	if (!player || init_dir > 3 || init_dir < 0)
+		return ;
+	if (init_dir == NO)
+	{
+		set_dvector(&player->curr_dir, 0, -1);
+		set_dvector(&player->plane, -fov, 0);
+	}
+	if (init_dir == SO)
+	{
+		set_dvector(&player->curr_dir, 0, 1);
+		set_dvector(&player->plane, fov, 0);
+	}
+	if (init_dir == EA)
+	{
+		set_dvector(&player->curr_dir, 1, 0);
+		set_dvector(&player->plane, 0, fov);
+	}
+	if (init_dir == WE)
+	{
+		set_dvector(&player->curr_dir, -1, 0);
+		set_dvector(&player->plane, 0, -fov);
+	}
+}
