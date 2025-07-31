@@ -1,5 +1,24 @@
 #include "cub3d.h"
 
+int32_t	get_wall_color(int pos, t_direction wall_dir, int side)
+{
+	// int32_t alpha = side == 1 ? 128 : 255;
+	(void)side;
+	if (pos > 0)
+	{
+		if (wall_dir == NO)
+			return (get_rgba(255, 0, 0, 255));
+		if (wall_dir == SO)
+			return (get_rgba(0, 255, 0, 255));
+		if (wall_dir == WE)
+			return (get_rgba(0, 0, 255, 255));
+		if (wall_dir == EA)
+			return (get_rgba(128, 128, 128, 255));
+	}
+	return (get_rgba(0, 0, 0, 255));
+}
+
+
 void raycasting(t_game *game)
 {
 	t_player	*player = game->player;
@@ -78,6 +97,24 @@ void raycasting(t_game *game)
 			if (game->worldMap[mapY][mapX] > 0)
 				hit = 1;
 		}
+
+		// Sdes qye direccion choca el rayo
+		t_direction	wall_dir;
+		if (side == 0)
+		{
+			if (rayDirX > 0)
+				wall_dir = WE;
+			else
+				wall_dir = EA;
+		}
+		else
+		{
+			if (rayDirY > 0)
+				wall_dir = NO;
+			else
+				wall_dir = SO;
+		}
+
 		// Calcular la distanci proyectada a la direccion de la camara (La distancia Euclidea causaria efecto ojo de pescado);
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
@@ -95,17 +132,16 @@ void raycasting(t_game *game)
 			drawEnd = SCREEN_H - 1;
 
 		int32_t color;
-		int32_t alpha = side == 1 ? 128 : 255;
 		if (game->worldMap[mapY][mapX] == 1)
-			color = get_rgba(255, 0, 0, alpha);
+			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
 		else if (game->worldMap[mapY][mapX] == 2)
-			color = get_rgba(0, 255, 0, alpha);
+			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
 		else if (game->worldMap[mapY][mapX] == 3)
-			color = get_rgba(0, 0, 255, alpha);
+			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
 		else if (game->worldMap[mapY][mapX] == 4)
-			color = get_rgba(255, 131, 255, alpha);
+			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
 		else if (game->worldMap[mapY][mapX] == 5)
-			color = get_rgba(100, 42, 42, 255);
+			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
 		else
 			color = get_rgba(0, 0, 0, 255);
 		draw_ver_line(game, x, drawStart, drawEnd, color);
