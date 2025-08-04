@@ -115,17 +115,10 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (map_valid_dimentions(game) == 1)
 		return (false);
+	printf("Height: %d", game->map_height);
+	printf("Len: %d", game->map_length);
 	// ft_put_str_arr(game->map);
-	// Check map_valid length
 	// Change all empty spaces by 00 here? Or after floodfill?
 	return (true);
 }
 
-// static bool	is_map_clean()
-// {
-// 	/*
-// 		TODO:
-
-// 		5. At some point, get map height and length (length == longest line) -> Thinner lines should get ceros at the end to make the map rectangle
-// 	*/
-// }
