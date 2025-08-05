@@ -71,6 +71,8 @@ int32_t	main(int argc, char *args[])
 	if (!check_input_file(argc, args[1]))
 		return (EXIT_FAILURE);
 	game = init_game_struct();
+	if (!game)
+		return (EXIT_FAILURE);
 	if (parse_input_file(game, args[1]) == 1)
 		return (EXIT_FAILURE);
 

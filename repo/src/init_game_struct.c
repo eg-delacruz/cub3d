@@ -12,7 +12,7 @@
 
 # include "cub3d.h"
 
-// TODO: initialize all parse elements in a different function
+// TODO: initialize all elements in a different function depending on its category
 t_game *init_game_struct(void)
 {
 	t_game *game;
@@ -26,8 +26,28 @@ t_game *init_game_struct(void)
 	game->EA_texture = NULL;
 	game->map_height = 0;
 	game->map_length = 0;
+	game->p = NULL;
+	
+	// Player
+	game->p = malloc(sizeof(t_player));
+	if (!game->p)
+		return (ft_safe_free((void **)&game), NULL);
+	game->p->init_pos = NULL;
+	game->p->pos = NULL;
+	game->p->pos = malloc(sizeof(t_pos));
+	game->p->init_pos = malloc(sizeof(t_pos));
+	if (!game->p->pos || !game->p->init_pos)
+	{
+		ft_safe_free((void **)&game->p->pos);
+		ft_safe_free((void **)&game->p->init_pos);
+		ft_safe_free((void **)&game->p);
+		ft_safe_free((void **)&game);
+		return (NULL);
+	}
+	game->p->pos->x = -1;
+	game->p->pos->y = -1;
 
-	//
+	// Parse
 	game->parse.C_color_str = NULL;
 	game->parse.F_color_str = NULL;
 	game->parse.file_path = NULL;

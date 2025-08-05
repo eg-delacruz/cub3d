@@ -44,6 +44,7 @@
 # define ERR_INVALID_MAP_ELEM "Invalid element in the map or after ther map"
 # define ERR_MAP_DIV "Map divided by linejump or invalid line with spaces"
 # define ERR_MAP_SMALL "Map is too small"
+# define ERR_ONE_PLAYER "Map must have exactly one player"
 
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"

@@ -106,3 +106,34 @@ int	map_valid_dimentions(t_game *game)
 	}
 	return (0);
 }
+
+// Also gets player position
+// TODO: test this
+bool	is_exactly_one_player(t_game *game)
+{
+	int	count;
+	int	i;
+	int	j;
+
+	count = 0;
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' 
+				|| game->map[i][j] == 'E'  || game->map[i][j] == 'W')
+			{
+				count++;
+				game->p->init_pos->x = j;
+				game->p->init_pos->y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (count != 1)
+		return (puterror(ERR_ONE_PLAYER), false);
+	return (true);
+}

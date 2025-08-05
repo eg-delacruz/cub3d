@@ -23,4 +23,10 @@ Regarding colors:
 Regarding map:
 - Surrounded by walls
 - One player exactly
--> Create a function that checks if all members of a string are part of a set ("10 NSEW")
+-> Create a function that checks if all members of a string are part of a set ("10 NSEW") ✅
+- Remove character from map after knowing its position
+
+TODO:
+1. Change pos by typedef double t_dvector [2];
+2. Move all defines to defines.h file (and not in cube.h)
+3. Add what JP has in his structs to mines

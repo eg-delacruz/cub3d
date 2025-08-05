@@ -28,6 +28,18 @@
 
 # include "defines.h"
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+typedef struct s_player
+{
+	struct s_pos	*init_pos;
+	struct s_pos	*pos;
+}	t_player;
+
 typedef struct s_parse
 {
 	int		file_lines;
@@ -41,14 +53,15 @@ typedef struct s_parse
 
 typedef struct s_game
 {
-	t_parse	parse;
-	char	*NO_texture;
-	char	*SO_texture;
-	char	*WE_texture;
-	char	*EA_texture;
-	int		map_height;
-	int		map_length;
-	char	**map;
+	t_parse			parse;
+	struct s_player	*p;
+	char			*NO_texture;
+	char			*SO_texture;
+	char			*WE_texture;
+	char			*EA_texture;
+	int				map_height;
+	int				map_length;
+	char			**map;
 }	t_game;
 
 // Functions
@@ -69,6 +82,7 @@ bool	are_valid_map_elements(char **raw_map);
 bool	is_map_divided(t_game *game);
 int		get_clean_map(t_game *game);
 int		map_valid_dimentions(t_game *game);
+bool	is_exactly_one_player(t_game *game);
 
 // Errors
 void	puterror(char *message);

@@ -100,6 +100,7 @@ static void	clean_line_jumps(t_parse parse)
 	}
 }
 
+// TODO: at some point, give the p-> pos the same value as init_pos
 bool	is_valid_map(t_game *game, int file_fd)
 {
 	if (count_map_lines(game, file_fd) == false)
@@ -115,10 +116,12 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (map_valid_dimentions(game) == 1)
 		return (false);
-	printf("Height: %d", game->map_height);
-	printf("Len: %d", game->map_length);
+	if (is_exactly_one_player(game) == false)
+		return (false);
+	printf("X: %d\n", game->p->init_pos->x);
+	printf("Y: %d\n", game->p->init_pos->y);
 	// ft_put_str_arr(game->map);
-	// Change all empty spaces by 00 here? Or after floodfill?
+	// Change all empty spaces by 11 here? Or after floodfill?
 	return (true);
 }
 
