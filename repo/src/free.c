@@ -26,9 +26,9 @@ void	free_game(t_game *game)
 	ft_safe_free((void **)&game->EA_texture);
 	ft_safe_free((void **)&game->parse.F_color_str);
 	ft_safe_free((void **)&game->parse.C_color_str);
-	ft_safe_free((void **)&game->p->pos);
 	ft_safe_free((void **)&game->p);
 	ft_free_split(game->parse.raw_map);
 	ft_free_split(game->map);
+	ft_free_split(game->parse.flood_check_map);
 	ft_safe_free((void **)&game);
 }

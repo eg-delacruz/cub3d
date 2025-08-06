@@ -54,4 +54,56 @@
 #  define PI 3.14159265358979323846
 # endif
 
+typedef double	t_dvector[2];
+typedef	int		t_ivector[2];
+
+typedef enum e_direction
+{
+	SO,
+	NO,
+	WE,
+	EA
+} t_direction;
+
+// Structs
+
+typedef struct s_player
+{
+	double		speed_rot;
+	double		speed_mov;
+	double		radius;
+	double		fov;
+	// Estas son posiciones
+	char		init_dir; // This is defined as t_dvector init_dir; in JP's part
+	char		curr_dir; // This is defined as t_dvector curr_dir; in JP's part
+	t_dvector	plane;
+	t_ivector	init_pos; // This is called init_map_pos in Jean Paul's part
+	t_ivector	pos; // This is called screen_pos in Jean Paul's part
+}	t_player;
+
+typedef struct s_parse
+{
+	int		file_lines;
+	int		map_till_eof_lines;
+	char	*file_path;
+	// TODO: remember to free these two when parse concludes/when needed
+	char 	*F_color_str;
+	char 	*C_color_str;
+	char	**raw_map;
+	char	**flood_check_map;
+}	t_parse;
+
+typedef struct s_game
+{
+	t_parse			parse;
+	struct s_player	*p;
+	char			*NO_texture;
+	char			*SO_texture;
+	char			*WE_texture;
+	char			*EA_texture;
+	int				map_height;
+	int				map_length;
+	char			**map;
+}	t_game;
+
 #endif /* defines.h */

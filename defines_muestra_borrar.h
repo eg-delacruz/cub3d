@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   defines_muestra_borrar.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/31 15:27:31 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/05 18:46:30 by erde-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_player
 	double		speed_mov;
 	double		radius;
 	double		fov;
+	// Estas son posiciones
 	t_dvector	init_dir;
 	t_dvector	curr_dir;
 	t_dvector	plane;

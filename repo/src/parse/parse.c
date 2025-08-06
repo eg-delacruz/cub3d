@@ -62,5 +62,7 @@ int	parse_input_file(t_game *game, char *path)
 	// TODO: check here the colors
 	if (is_valid_map(game, file_fd) == false)
 		return (free_game(game), 1);
+	printf("X: %d\n", game->p->init_pos[0]);
+	printf("Y: %d\n", game->p->init_pos[1]);
 	return (0);
 }

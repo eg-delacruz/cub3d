@@ -100,7 +100,6 @@ static void	clean_line_jumps(t_parse parse)
 	}
 }
 
-// TODO: at some point, give the p-> pos the same value as init_pos
 bool	is_valid_map(t_game *game, int file_fd)
 {
 	if (count_map_lines(game, file_fd) == false)
@@ -118,10 +117,10 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (is_exactly_one_player(game) == false)
 		return (false);
-	printf("X: %d\n", game->p->init_pos->x);
-	printf("Y: %d\n", game->p->init_pos->y);
+	if (is_surrounded_by_walls(game) == false)
+		return (false);
 	// ft_put_str_arr(game->map);
-	// Change all empty spaces by 11 here? Or after floodfill?
+	//TODO: Change all empty spaces by 11 here
+	// TODO: at some point, give the p-> pos the same value as init_pos
 	return (true);
 }
-

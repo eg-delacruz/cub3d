@@ -32,20 +32,12 @@ t_game *init_game_struct(void)
 	game->p = malloc(sizeof(t_player));
 	if (!game->p)
 		return (ft_safe_free((void **)&game), NULL);
-	game->p->init_pos = NULL;
-	game->p->pos = NULL;
-	game->p->pos = malloc(sizeof(t_pos));
-	game->p->init_pos = malloc(sizeof(t_pos));
-	if (!game->p->pos || !game->p->init_pos)
-	{
-		ft_safe_free((void **)&game->p->pos);
-		ft_safe_free((void **)&game->p->init_pos);
-		ft_safe_free((void **)&game->p);
-		ft_safe_free((void **)&game);
-		return (NULL);
-	}
-	game->p->pos->x = -1;
-	game->p->pos->y = -1;
+	game->p->pos[0] = -1;
+	game->p->pos[1] = -1;
+	game->p->init_pos[0] = -1;
+	game->p->init_pos[1] = -1;
+	game->p->init_dir = '0';
+	game->p->curr_dir = '0';
 
 	// Parse
 	game->parse.C_color_str = NULL;
@@ -53,5 +45,6 @@ t_game *init_game_struct(void)
 	game->parse.file_path = NULL;
 	game->parse.raw_map = NULL;
 	game->parse.map_till_eof_lines = 0;
+	game->parse.flood_check_map = NULL;
 	return (game);
 }
