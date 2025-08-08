@@ -45,6 +45,7 @@ int	get_file_len(char *path)
 	return (count);
 }
 
+// Checks if all characters in str are in set
 bool	all_chars_in_set(const char *str, const char *set)
 {
 	size_t	i;
@@ -91,4 +92,23 @@ char	*get_next_valid_line(int file_fd)
 		break ;
 	}
 	return (line);
+}
+
+void	replace_empty_spaces_by_ones(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
 }

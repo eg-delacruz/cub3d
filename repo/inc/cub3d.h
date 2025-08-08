@@ -48,6 +48,8 @@ int		get_clean_map(t_game *game);
 int		map_valid_dimentions(t_game *game);
 bool	is_exactly_one_player(t_game *game);
 bool	is_surrounded_by_walls(t_game *game);
+void	replace_empty_spaces_by_ones(char **map);
+int		make_square_map(char **map, int cols);
 
 // Errors
 void	puterror(char *message);

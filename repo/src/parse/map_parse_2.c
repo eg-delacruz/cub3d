@@ -46,7 +46,7 @@ bool	is_map_divided(t_game *game)
 	}
 	if (i <= 2)
 		return (puterror(ERR_MAP_SMALL), true);
-	game->map_height = i;
+	game->map_rows = i;
 	if (raw_map[i])
 	{
 		i++;
@@ -64,7 +64,7 @@ int	get_clean_map(t_game *game)
 {
 	int	i;
 
-	game->map = malloc(sizeof(char *) * (game->map_height + 1));
+	game->map = malloc(sizeof(char *) * (game->map_rows + 1));
 	if (!game->map)
 		return (1);
 	i = 0;
@@ -98,8 +98,8 @@ int	map_valid_dimentions(t_game *game)
 			length = tmp_length;
 		i++;
 	}
-	game->map_length = length;
-	if (game->map_height <= 2 || game->map_length <= 2)
+	game->map_cols = length;
+	if (game->map_rows <= 2 || game->map_cols <= 2)
 	{
 		puterror(ERR_MAP_SMALL);
 		return (1);

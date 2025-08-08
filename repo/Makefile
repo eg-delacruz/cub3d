@@ -30,6 +30,7 @@ SRC = main.c \
 	/parse/map_parse.c \
 	/parse/map_parse_2.c \
 	/parse/parse_utils.c \
+	/parse/parse_utils_2.c \
 	/parse/floodfill.c \
 	init_game_struct.c \
 	free.c \

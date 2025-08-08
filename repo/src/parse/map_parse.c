@@ -119,8 +119,11 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (is_surrounded_by_walls(game) == false)
 		return (false);
-	// ft_put_str_arr(game->map);
-	//TODO: Change all empty spaces by 11 here
-	// TODO: at some point, give the p-> pos the same value as init_pos
+	if (make_square_map(game->map, game->map_cols) == 1)
+		return (false);
+	replace_empty_spaces_by_ones(game->map);
+	game->p->pos[0] = game->p->init_pos[0];
+	game->p->pos[1] = game->p->init_pos[1];
+	// TODO: store_init_dir() here and erase player from map. Also, save the direction as the corresponding vector values (waiting for JP to answer me this) -> Save it as t_dvector instead of as char!
 	return (true);
 }

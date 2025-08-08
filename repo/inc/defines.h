@@ -41,6 +41,7 @@
 # define ERR_NO_MAP "No map provided in the .cub file"
 # define ERR_ELEMS_BEFORE_MAP "Only newlines allowed between elements and map"
 # define ERR_WRONG_MAP_1 "Invalid element before map or invalid map"
+# define ERR_WRONG_MAP_2 "Player is not enclosed by walls in the map"
 # define ERR_INVALID_MAP_ELEM "Invalid element in the map or after ther map"
 # define ERR_MAP_DIV "Map divided by linejump or invalid line with spaces"
 # define ERR_MAP_SMALL "Map is too small"
@@ -49,6 +50,7 @@
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"
 # define ERR_CLEAN_MAP "get_clean_map() function failed"
+# define ERR_SQUARE_MAP "make_square_map() function failed"
 
 # ifndef PI
 #  define PI 3.14159265358979323846
@@ -75,10 +77,10 @@ typedef struct s_player
 	double		fov;
 	// Estas son posiciones
 	char		init_dir; // This is defined as t_dvector init_dir; in JP's part
-	char		curr_dir; // This is defined as t_dvector curr_dir; in JP's part
+	t_dvector	curr_dir;
 	t_dvector	plane;
 	t_ivector	init_pos; // This is called init_map_pos in Jean Paul's part
-	t_ivector	pos; // This is called screen_pos in Jean Paul's part
+	t_dvector	pos; // This is called screen_pos in Jean Paul's part
 }	t_player;
 
 typedef struct s_parse
@@ -101,8 +103,8 @@ typedef struct s_game
 	char			*SO_texture;
 	char			*WE_texture;
 	char			*EA_texture;
-	int				map_height;
-	int				map_length;
+	int				map_rows;
+	int				map_cols;
 	char			**map;
 }	t_game;
 

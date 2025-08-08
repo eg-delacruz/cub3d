@@ -21,7 +21,7 @@ Regarding colors:
 - Must be positive (don't allow + or -) -> Allow only numeric values
 
 Regarding map:
-- Surrounded by walls
+- Surrounded by walls ✅
 - One player exactly ✅
 -> Create a function that checks if all members of a string are part of a set ("10 NSEW") ✅
 - Remove character from map after knowing its position

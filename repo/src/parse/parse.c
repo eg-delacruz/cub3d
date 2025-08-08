@@ -40,7 +40,6 @@ static int	set_elems_in_arr(char **elems, int file_fd)
 	return (0);
 }
 
-// TODO: remember to read the file till the end to avoid leaks of the static variable
 // TODO: at the end, check al invalid maps using valgrind
 int	parse_input_file(t_game *game, char *path)
 {
@@ -64,5 +63,7 @@ int	parse_input_file(t_game *game, char *path)
 		return (free_game(game), 1);
 	printf("X: %d\n", game->p->init_pos[0]);
 	printf("Y: %d\n", game->p->init_pos[1]);
+	printf("Rows: %d\n", game->map_rows);
+	printf("Cols: %d\n", game->map_cols);
 	return (0);
 }

@@ -24,8 +24,8 @@ t_game *init_game_struct(void)
 	game->SO_texture = NULL;
 	game->WE_texture = NULL;
 	game->EA_texture = NULL;
-	game->map_height = 0;
-	game->map_length = 0;
+	game->map_rows = 0;
+	game->map_cols = 0;
 	game->p = NULL;
 	
 	// Player
@@ -37,7 +37,8 @@ t_game *init_game_struct(void)
 	game->p->init_pos[0] = -1;
 	game->p->init_pos[1] = -1;
 	game->p->init_dir = '0';
-	game->p->curr_dir = '0';
+	game->p->curr_dir[0] = 0;
+	game->p->curr_dir[1] = 0;
 
 	// Parse
 	game->parse.C_color_str = NULL;
