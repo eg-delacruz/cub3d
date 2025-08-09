@@ -1,10 +1,32 @@
-//// Possible characters: 0, 1, N, S, E, W
+//// Possible characters: 0, 1, N, S, E, W ✅
 
 //// Input file constraints:
-- File must end in .cub
-- Surrounded by walls
-- Each type of element CAN be separated by at least one line
-- Map content has to be de last always
-- Each element (except for the map) can be set in any order in the file
-- Except for the map, each type of info from an element can be separated by one or more spaces
-- Each element info can have different orders (NO SO WE EA or WE SO EA NO)
+- File must end in .cub ✅
+- Each type of element CAN be separated by at least one line ✅
+- Each element info can have different orders (NO SO WE EA or WE SO EA NO) ✅
+- Map content has to be the de last always ✅
+- Each element (except for the map) can be set in any order in the file ✅
+- There must be exact 6 elements in the file ✅
+- Elements cannot be repeated ✅
+- Except for the map, each type of info from an element can be separated by one or more spaces ✅
+
+Regarding textures:
+- Check extention (png) ✅
+- Check if exists -> ERR "Texture doesn't exists or provided path is invalid" ✅
+
+Regarding colors:
+- Are separateb by "," ✅
+- Can be separated by spaces ✅
+- Must be positive (don't allow + or -) -> Allow only numeric values ✅
+- store them as int * ✅
+
+Regarding map:
+- Surrounded by walls ✅
+- One player exactly ✅
+-> Create a function that checks if all members of a string are part of a set ("10 NSEW") ✅
+- Remove character from map after knowing its position ✅
+4. Save player direction as the enum e_direction. Afterwards, erase player from map, replacing it by a 0 ✅
+
+// TODO: 
+- check for leaks for all possible maps when parse is finished
+- norminette

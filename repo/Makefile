@@ -19,11 +19,24 @@ MLX42 = $(MLX42_DIR)/build/libmlx42.a
 LIBFT = $(LIBFT_DIR)/libft.a
 GNL = $(GNL_DIR)/gnl.a
 
-INCLUDES = -I$(LIBFT_DIR) -I$(MLX42_DIR)/include -I./inc
+INCLUDES = -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX42_DIR)/include -I./inc
 LIBSFLAGS = -lm -L$(LIBFT_DIR) -lft -ldl -pthread -lglfw
 
 
-SRC = main.c /parse/check_input_file_name.c error.c
+SRC = main.c \
+	/parse/parse.c \
+	/parse/check_input_file.c \
+	/parse/file_parse.c \
+	/parse/map_parse.c \
+	/parse/map_parse_2.c \
+	/parse/parse_utils.c \
+	/parse/parse_utils_2.c \
+	/parse/floodfill.c \
+	/parse/textures.c \
+	/parse/colors.c \
+	init_game_struct.c \
+	free.c \
+	error.c
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
@@ -60,8 +73,8 @@ $(MLX42):
 	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
 	@cmake --build $(MLX42_DIR)/build -j4
 
-$(NAME): $(LIBFT) libmlx $(OBJ_FILES)
-	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(MLX42) $(LIBSFLAGS)
+$(NAME): $(LIBFT) $(GNL) libmlx $(OBJ_FILES)
+	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(GNL) $(MLX42) $(LIBSFLAGS)
 	@echo "\n✅ DONE ./$(NAME) created!"
 
 libmlx: $(MLX42)
@@ -85,9 +98,9 @@ exe: all
 	@echo "$(BLUE_UNDER)Removing $(NAME)...$(RST)"
 	@rm -rf $(NAME)
 
-valgrind: $(NAME)
-	@echo "$(BLUE_UNDER)Compiling with Valgrind flags...$(RST)"
-	@$(CC) $(CFLAGS_LEAKS) $(OBJFILES) $(libft) $(gnl) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
+valgrind: libmlx $(NAME)
+	@echo "$(BLUE_UNDER)Compiling...$(RST)"
+	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME) $(LIBFT) $(GNL) $(MLX42) $(LIBSFLAGS)
 	@echo "$(BLUE_UNDER)Executing with Valgrind...$(RST)"
 	@valgrind --leak-check=full --show-leak-kinds=all --tool=memcheck --track-origins=yes ./$(NAME) $(ARGS)
 	@echo "$(GREEN)Valgrind execution completed"
@@ -97,7 +110,7 @@ valgrind: $(NAME)
 clean:
 	@printf "🧼 Cleaning .o files! 🫧\n"
 	# TODO: uncomment this
-	# @rm -rfd $(MLX42_DIR)/build
+# 	# @rm -rfd $(MLX42_DIR)/build
 	@rm -rfd $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 
@@ -105,12 +118,12 @@ fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 	# TODO: uncomment this
-	# @echo "rm -rfd $(MLX42_DIR)"
-	@rm -rfd ${MLX42_DIR}
+# 	# @echo "rm -rfd $(MLX42_DIR)"
+# 	@rm -rfd ${MLX42_DIR}
 
 test:
 	@echo "$(LIB_DIR)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re exe valgrind test
