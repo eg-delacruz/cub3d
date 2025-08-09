@@ -15,10 +15,10 @@ Regarding textures:
 - Check if exists -> ERR "Texture doesn't exists or provided path is invalid" ✅
 
 Regarding colors:
-- Are separateb by ","
-- Can be separated by spaces
-- Must be positive (don't allow + or -) -> Allow only numeric values
-- store them as int **
+- Are separateb by "," ✅
+- Can be separated by spaces ✅
+- Must be positive (don't allow + or -) -> Allow only numeric values ✅
+- store them as int * ✅
 
 Regarding map:
 - Surrounded by walls ✅

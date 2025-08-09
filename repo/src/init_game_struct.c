@@ -27,6 +27,8 @@ t_game *init_game_struct(void)
 	game->map_rows = 0;
 	game->map_cols = 0;
 	game->p = NULL;
+	game->c[3] = -1;
+	game->f[3] = -1;
 	
 	// Player
 	game->p = malloc(sizeof(t_player));

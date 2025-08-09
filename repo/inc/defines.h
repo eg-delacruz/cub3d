@@ -48,11 +48,16 @@
 # define ERR_ONE_PLAYER "Map must have exactly one player"
 # define ERR_TEXTURE_EXT "Textures must be .png images"
 # define ERR_NO_TEXTURE "Texture doesn't exists or provided path is invalid"
+# define ERR_INVALID_COLOR_1 "RGB color can only have digits"
+# define ERR_INVALID_COLOR_2 "An RGB color is composed exactly by 3 byte numbers"
+# define ERR_RGB_OUT_OF_RANGE "Each RGB element must be between 0 and 255"
 
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"
 # define ERR_CLEAN_MAP "get_clean_map() function failed"
 # define ERR_SQUARE_MAP "make_square_map() function failed"
+# define ERR_CHECK_COLORS "check_colors() function failed"
+# define ERR_REMOVE_EMPTY_SPACES "remove_empty_spaces() function failed"
 
 # ifndef PI
 #  define PI 3.14159265358979323846
@@ -105,6 +110,8 @@ typedef struct s_game
 	char			*SO_texture;
 	char			*WE_texture;
 	char			*EA_texture;
+	int				c[4];
+	int				f[4];
 	int				map_rows;
 	int				map_cols;
 	char			**map;

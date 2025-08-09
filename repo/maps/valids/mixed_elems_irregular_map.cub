@@ -3,7 +3,7 @@ SO  ./assets/example.png
 
 
 WE ./assets/example.png
-F 30,60,90
+F      30 , 60,      90 
 
 C                         70,130,180              
 
