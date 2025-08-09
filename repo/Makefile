@@ -32,6 +32,8 @@ SRC = main.c \
 	/parse/parse_utils.c \
 	/parse/parse_utils_2.c \
 	/parse/floodfill.c \
+	/parse/textures.c \
+	/parse/colors.c \
 	init_game_struct.c \
 	free.c \
 	error.c

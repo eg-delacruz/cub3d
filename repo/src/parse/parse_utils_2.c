@@ -39,7 +39,6 @@ int	make_square_map(char **map, int cols)
 	return (0);
 }
 
-// TODO: store curr_dir as numbers instead of as char (waiting for JP to answer)
 void	store_init_player_dir(t_game *game)
 {
 	char	dir;

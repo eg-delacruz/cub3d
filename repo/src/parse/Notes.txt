@@ -11,14 +11,14 @@
 - Except for the map, each type of info from an element can be separated by one or more spaces ✅
 
 Regarding textures:
-- Check extention
-- Check if exists
--> What if textures path have an empty space? This should be allowed, right?
+- Check extention (png) ✅
+- Check if exists -> ERR "Texture doesn't exists or provided path is invalid" ✅
 
 Regarding colors:
 - Are separateb by ","
 - Can be separated by spaces
 - Must be positive (don't allow + or -) -> Allow only numeric values
+- store them as int **
 
 Regarding map:
 - Surrounded by walls ✅

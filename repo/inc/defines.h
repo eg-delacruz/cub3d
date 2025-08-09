@@ -46,6 +46,8 @@
 # define ERR_MAP_DIV "Map divided by linejump or invalid line with spaces"
 # define ERR_MAP_SMALL "Map is too small"
 # define ERR_ONE_PLAYER "Map must have exactly one player"
+# define ERR_TEXTURE_EXT "Textures must be .png images"
+# define ERR_NO_TEXTURE "Texture doesn't exists or provided path is invalid"
 
 // Function failure because of malloc error messages
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"

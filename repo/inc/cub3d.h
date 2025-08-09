@@ -51,6 +51,7 @@ bool	is_surrounded_by_walls(t_game *game);
 void	replace_empty_spaces_by_ones(char **map);
 int		make_square_map(char **map, int cols);
 void	store_init_player_dir(t_game *game);
+int		check_textures(t_game *game);
 
 // Errors
 void	puterror(char *message);
