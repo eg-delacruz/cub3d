@@ -12,11 +12,12 @@
 
 #include "cub3d.h"
 
-// Make all rows the same length by adding empty spaces if necessary
+// Make all rows the same length by adding '1's if necessary
 int	make_square_map(char **map, int cols)
 {
 	int		i;
 	char	*new_row;
+	size_t	remaining_len;
 
 	i = 0;
 	while (map[i])
@@ -27,7 +28,8 @@ int	make_square_map(char **map, int cols)
 			if (!new_row)
 				return (puterror(ERR_SQUARE_MAP), 1);
 			ft_strlcpy(new_row, map[i], cols + 1);
-			ft_memset(new_row + ft_strlen(map[i]), '1', cols - ft_strlen(map[i]));
+			remaining_len = cols - ft_strlen(map[i]);
+			ft_memset(new_row + ft_strlen(map[i]), '1', remaining_len);
 			new_row[cols] = '\0';
 			ft_safe_free((void **)&map[i]);
 			map[i] = new_row;
@@ -35,4 +37,23 @@ int	make_square_map(char **map, int cols)
 		i++;
 	}
 	return (0);
+}
+
+// TODO: store curr_dir as numbers instead of as char (waiting for JP to answer)
+void	store_init_player_dir(t_game *game)
+{
+	char	dir;
+
+	dir = game->map[game->p->init_pos[1]][game->p->init_pos[0]];
+	if (dir == 'N')
+		game->p->init_dir = NO;
+	else if (dir == 'S')
+		game->p->init_dir = SO;
+	else if (dir == 'W')
+		game->p->init_dir = WE;
+	else if (dir == 'E')
+		game->p->init_dir = EA;
+	else
+		return ;
+	game->map[game->p->init_pos[1]][game->p->init_pos[0]] = '0';
 }

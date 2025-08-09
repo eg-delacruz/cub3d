@@ -124,6 +124,6 @@ bool	is_valid_map(t_game *game, int file_fd)
 	replace_empty_spaces_by_ones(game->map);
 	game->p->pos[0] = game->p->init_pos[0];
 	game->p->pos[1] = game->p->init_pos[1];
-	// TODO: store_init_dir() here and erase player from map. Also, save the direction as the corresponding vector values (waiting for JP to answer me this) -> Save it as t_dvector instead of as char!
+	store_init_player_dir(game);
 	return (true);
 }

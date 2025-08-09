@@ -1,4 +1,4 @@
-//// Possible characters: 0, 1, N, S, E, W
+//// Possible characters: 0, 1, N, S, E, W ✅
 
 //// Input file constraints:
 - File must end in .cub ✅
@@ -24,7 +24,9 @@ Regarding map:
 - Surrounded by walls ✅
 - One player exactly ✅
 -> Create a function that checks if all members of a string are part of a set ("10 NSEW") ✅
-- Remove character from map after knowing its position
+- Remove character from map after knowing its position ✅
+4. Save player direction as the enum e_direction. Afterwards, erase player from map, replacing it by a 0 ✅
 
-TODO:
-4. Save player direction as the enum e_direction. Afterwards, erase player from map, replacing it by a 0
+// TODO: 
+- check for leaks for all possible maps when parse is finished
+- norminette

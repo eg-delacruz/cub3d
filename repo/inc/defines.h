@@ -42,7 +42,7 @@
 # define ERR_ELEMS_BEFORE_MAP "Only newlines allowed between elements and map"
 # define ERR_WRONG_MAP_1 "Invalid element before map or invalid map"
 # define ERR_WRONG_MAP_2 "Player is not enclosed by walls in the map"
-# define ERR_INVALID_MAP_ELEM "Invalid element in the map or after ther map"
+# define ERR_INVALID_MAP_ELEM "Invalid element in the map or after the map"
 # define ERR_MAP_DIV "Map divided by linejump or invalid line with spaces"
 # define ERR_MAP_SMALL "Map is too small"
 # define ERR_ONE_PLAYER "Map must have exactly one player"
@@ -76,11 +76,11 @@ typedef struct s_player
 	double		radius;
 	double		fov;
 	// Estas son posiciones
-	char		init_dir; // This is defined as t_dvector init_dir; in JP's part
-	t_dvector	curr_dir;
-	t_dvector	plane;
-	t_ivector	init_pos; // This is called init_map_pos in Jean Paul's part
-	t_dvector	pos; // This is called screen_pos in Jean Paul's part
+	t_direction		init_dir; // This is defined as t_dvector init_dir; in JP's part
+	t_dvector		curr_dir;
+	t_dvector		plane;
+	t_ivector		init_pos; // This is called init_map_pos in Jean Paul's part
+	t_dvector		pos; // This is called screen_pos in Jean Paul's part
 }	t_player;
 
 typedef struct s_parse
