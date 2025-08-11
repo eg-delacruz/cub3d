@@ -22,7 +22,7 @@ int32_t	get_wall_color(int pos, t_direction wall_dir, int side)
 void raycasting(t_game *game)
 {
 	t_player	*player = game->player;
-	double posX = player->screen_pos[X], posY = player->screen_pos[Y]; // x and y start position;
+	double posX = player->pos[X], posY = player->pos[Y]; // x and y start position;
 	double dirX = player->curr_dir[X], dirY = player->curr_dir[Y];	   // initial direction vector;
 	double planeX = player->plane[X], planeY = player->plane[Y];
 

@@ -74,7 +74,7 @@ int		**create_map(void)
 	return (map);
 }
 
-t_player	*init_player(t_direction init_dir)
+t_player	*init_player2(t_direction init_dir)
 {
 	t_player	*player;
 
@@ -82,20 +82,19 @@ t_player	*init_player(t_direction init_dir)
 
 	player->fov = FOV;
 	set_player_dir(player, init_dir);
-	player->screen_pos[X] = 3.0;
-	player->screen_pos[Y] = 3.0;
-	player->map_pos[X] = (int)player->screen_pos[X];
-	player->map_pos[Y] = (int)player->screen_pos[Y];
+	player->pos[X] = 3.0;
+	player->pos[Y] = 3.0;
+	player->map_pos[X] = (int)player->pos[X];
+	player->map_pos[Y] = (int)player->pos[Y];
 	player->radius = 0.3;
 	player->speed_mov = 0.33;
 	player->speed_rot = 0.001;
-
 	return (player);
 }
 
 void	setup_game(t_game *game)
 {
-	game->player = init_player(WE);
+	game->player = init_player2(WE);
 	game->ceiling_color = get_rgba(52, 204, 235, 255);
 	game->floor_color = get_rgba(64, 50, 40, 255);
 	game->worldMap = create_map();

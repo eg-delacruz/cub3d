@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:14:43 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/22 00:10:43 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:37:35 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	puterr_status(char *message, int status)
 	return (status);
 }
 
-// TODO: complete in the future
-// //puterror + free_program
-// void	error_free(char *message, t_shell *shell, int exit_code)
-// {
-// 	puterror(message);
-// 	free_program(shell);
-// 	exit(exit_code);
-// }
+//puterror + free_program + return exit status
+int	error_free_status(char *message, t_game *game, int exit_code)
+{
+	puterror(message);
+	free_game(game);
+	return (exit_code);
+}

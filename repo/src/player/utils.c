@@ -23,7 +23,7 @@ void	show_player(t_player *player)
 	printf(MAGENTA"Player info\n"RST);
 	printf("curr_dir = { %f , %f }\n", player->curr_dir[X], player->curr_dir[Y]);
 	printf("map_pos = { %d , %d }\n", player->map_pos[X], player->map_pos[Y]);
-	printf("screen_pos = { %f , %f }\n", player->screen_pos[X], player->screen_pos[Y]);
+	printf("pos = { %f , %f }\n", player->pos[X], player->pos[Y]);
 	printf("plane = { %f , %f }\n", player->plane[X], player->plane[Y]);
 	printf("radius = %f, speed_mov = %f, speed_rot = %f\n", player->radius, player->speed_mov, player->speed_rot);
 }
