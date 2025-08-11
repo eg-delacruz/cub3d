@@ -89,18 +89,18 @@ bool	check_duplicate_elems(t_game *game, char **elems, int fd)
 	i = -1;
 	while (elems[++i])
 	{
-		if (ft_strnstr(elems[i], "NO", 2) && !game->NO_texture)
-			game->NO_texture = ft_strtrim((elems[i] + 2), " \t");
-		else if (ft_strnstr(elems[i], "SO", 2) && !game->SO_texture)
-			game->SO_texture = ft_strtrim((elems[i] + 2), " \t");
-		else if (ft_strnstr(elems[i], "WE", 2) && !game->WE_texture)
-			game->WE_texture = ft_strtrim((elems[i] + 2), " \t");
-		else if (ft_strnstr(elems[i], "EA", 2) && !game->EA_texture)
-			game->EA_texture = ft_strtrim((elems[i] + 2), " \t");
-		else if (ft_strnstr(elems[i], "F", 1) && !game->parse.F_color_str)
-			game->parse.F_color_str = ft_strtrim((elems[i] + 1), " \t");
-		else if (ft_strnstr(elems[i], "C", 1) && !game->parse.C_color_str)
-			game->parse.C_color_str = ft_strtrim((elems[i] + 1), " \t");
+		if (ft_strnstr(elems[i], "NO", 2) && !game->no_texture)
+			game->no_texture = ft_strtrim((elems[i] + 2), " \t");
+		else if (ft_strnstr(elems[i], "SO", 2) && !game->so_texture)
+			game->so_texture = ft_strtrim((elems[i] + 2), " \t");
+		else if (ft_strnstr(elems[i], "WE", 2) && !game->we_texture)
+			game->we_texture = ft_strtrim((elems[i] + 2), " \t");
+		else if (ft_strnstr(elems[i], "EA", 2) && !game->ea_texture)
+			game->ea_texture = ft_strtrim((elems[i] + 2), " \t");
+		else if (ft_strnstr(elems[i], "F", 1) && !game->parse.f_color_str)
+			game->parse.f_color_str = ft_strtrim((elems[i] + 1), " \t");
+		else if (ft_strnstr(elems[i], "C", 1) && !game->parse.c_color_str)
+			game->parse.c_color_str = ft_strtrim((elems[i] + 1), " \t");
 		else
 		{
 			free_elems_arr_at_malloc_err(elems, 6);

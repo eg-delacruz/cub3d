@@ -29,7 +29,7 @@
 # include "defines.h"
 
 // Functions
-t_game	*init_game_struct(void);
+t_game	*init_program_struct(void);
 
 // Parsing
 bool	check_input_file(int argc, char *file_path);

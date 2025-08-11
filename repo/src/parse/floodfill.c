@@ -17,10 +17,11 @@ static bool	floodfill(t_game *game, int p_x, int p_y)
 	char	**flood_map;
 	int		rows;
 	char	tile;
+	bool	result;
 
 	flood_map = game->parse.flood_check_map;
 	rows = game->map_rows;
-	if (p_x < 0 || p_y < 0	
+	if (p_x < 0 || p_y < 0
 		|| p_x >= (int)ft_strlen(flood_map[p_y]) || p_y >= rows)
 		return (false);
 	tile = flood_map[p_y][p_x];
@@ -29,15 +30,14 @@ static bool	floodfill(t_game *game, int p_x, int p_y)
 	if (tile == '1' || tile == 'x')
 		return (true);
 	flood_map[p_y][p_x] = 'x';
-	return (
-		floodfill(game, p_x + 1, p_y) &&
-		floodfill(game, p_x - 1, p_y) &&
-		floodfill(game, p_x, p_y + 1) &&
-		floodfill(game, p_x, p_y - 1)
-	);
+	result = floodfill(game, p_x + 1, p_y)
+		&& floodfill(game, p_x - 1, p_y)
+		&& floodfill(game, p_x, p_y + 1)
+		&& floodfill(game, p_x, p_y - 1);
+	return (result);
 }
 
-static int get_flood_arr(t_game *game)
+static int	get_flood_arr(t_game *game)
 {
 	char	**flood_arr;
 	int		i;

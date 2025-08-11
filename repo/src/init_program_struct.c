@@ -10,30 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-// TODO: initialize all elements in a different function depending on its category
-t_game *init_game_struct(void)
+static t_game	*init_game(void)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
-		return (NULL);
-	game->NO_texture = NULL;
-	game->SO_texture = NULL;
-	game->WE_texture = NULL;
-	game->EA_texture = NULL;
+		return (puterror(ERR_INIT_GAME), NULL);
+	game->no_texture = NULL;
+	game->so_texture = NULL;
+	game->we_texture = NULL;
+	game->ea_texture = NULL;
 	game->map_rows = 0;
 	game->map_cols = 0;
 	game->p = NULL;
 	game->c[3] = -1;
 	game->f[3] = -1;
-	
-	// Player
+	return (game);
+}
+
+static int	init_player(t_game *game)
+{
 	game->p = malloc(sizeof(t_player));
 	if (!game->p)
-		return (ft_safe_free((void **)&game), NULL);
+		return (ft_safe_free((void **)&game), 1);
 	game->p->pos[0] = -1;
 	game->p->pos[1] = -1;
 	game->p->init_pos[0] = -1;
@@ -41,13 +43,28 @@ t_game *init_game_struct(void)
 	game->p->init_dir = '0';
 	game->p->curr_dir[0] = 0;
 	game->p->curr_dir[1] = 0;
+	return (0);
+}
 
-	// Parse
-	game->parse.C_color_str = NULL;
-	game->parse.F_color_str = NULL;
+static void	init_parse(t_game *game)
+{
+	game->parse.c_color_str = NULL;
+	game->parse.f_color_str = NULL;
 	game->parse.file_path = NULL;
 	game->parse.raw_map = NULL;
 	game->parse.map_till_eof_lines = 0;
 	game->parse.flood_check_map = NULL;
+}
+
+t_game	*init_program_struct(void)
+{
+	t_game	*game;
+
+	game = init_game();
+	if (!game)
+		return (NULL);
+	if (init_player(game) == 1)
+		return (NULL);
+	init_parse(game);
 	return (game);
 }

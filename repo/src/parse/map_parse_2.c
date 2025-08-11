@@ -121,8 +121,8 @@ bool	is_exactly_one_player(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' 
-				|| game->map[i][j] == 'E'  || game->map[i][j] == 'W')
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
+				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
 				count++;
 				game->p->init_pos[0] = j;

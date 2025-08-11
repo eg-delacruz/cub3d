@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 // Returns false if ther is something wrong with map
 static bool	count_map_lines(t_game *game, int file_fd)
@@ -39,12 +39,12 @@ static void	skip_previos_map_lines(int fd, t_game *game)
 {
 	char	*line;
 	int		i;
-	int		first_map_line_pos;
+	int		first_map_line;
 
 	line = get_next_line(fd);
 	i = 0;
-	first_map_line_pos = game->parse.file_lines - game->parse.map_till_eof_lines;
-	while (line && i < (first_map_line_pos - 1))
+	first_map_line = game->parse.file_lines - game->parse.map_till_eof_lines;
+	while (line && i < (first_map_line - 1))
 	{
 		ft_safe_free((void **)&line);
 		line = get_next_line(fd);

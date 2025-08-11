@@ -56,7 +56,7 @@ static bool	are_valid_symbols(char **color)
 	return (true);
 }
 
-static int	get_RGB_ints(int *dst, char **src)
+static int	get_rgb_ints(int *dst, char **src)
 {
 	int	i;
 
@@ -76,8 +76,8 @@ int	check_colors(t_game *game)
 	char	**c;
 	char	**f;
 
-	c = ft_split(game->parse.C_color_str, ',');
-	f = ft_split(game->parse.F_color_str, ',');
+	c = ft_split(game->parse.c_color_str, ',');
+	f = ft_split(game->parse.f_color_str, ',');
 	if (c == NULL || f == NULL)
 	{
 		ft_free_split(c);
@@ -86,7 +86,7 @@ int	check_colors(t_game *game)
 	}
 	if (!are_valid_symbols(c) || !are_valid_symbols(f))
 		return (ft_free_split(c), ft_free_split(f), 1);
-	if (get_RGB_ints(game->c, c) == 1 || get_RGB_ints(game->f, f) == 1)
+	if (get_rgb_ints(game->c, c) == 1 || get_rgb_ints(game->f, f) == 1)
 		return (ft_free_split(c), ft_free_split(f), 1);
 	ft_free_split(c);
 	ft_free_split(f);

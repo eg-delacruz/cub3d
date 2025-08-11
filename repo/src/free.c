@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	free_elems_arr_at_malloc_err(char **elems, size_t iterator)
 {
@@ -20,12 +20,12 @@ void	free_elems_arr_at_malloc_err(char **elems, size_t iterator)
 
 void	free_game(t_game *game)
 {
-	ft_safe_free((void **)&game->NO_texture);
-	ft_safe_free((void **)&game->SO_texture);
-	ft_safe_free((void **)&game->WE_texture);
-	ft_safe_free((void **)&game->EA_texture);
-	ft_safe_free((void **)&game->parse.F_color_str);
-	ft_safe_free((void **)&game->parse.C_color_str);
+	ft_safe_free((void **)&game->no_texture);
+	ft_safe_free((void **)&game->so_texture);
+	ft_safe_free((void **)&game->we_texture);
+	ft_safe_free((void **)&game->ea_texture);
+	ft_safe_free((void **)&game->parse.f_color_str);
+	ft_safe_free((void **)&game->parse.c_color_str);
 	ft_safe_free((void **)&game->p);
 	ft_free_split(game->parse.raw_map);
 	ft_free_split(game->map);

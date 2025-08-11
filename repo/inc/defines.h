@@ -49,10 +49,11 @@
 # define ERR_TEXTURE_EXT "Textures must be .png images"
 # define ERR_NO_TEXTURE "Texture doesn't exists or provided path is invalid"
 # define ERR_INVALID_COLOR_1 "RGB color can only have digits"
-# define ERR_INVALID_COLOR_2 "An RGB color is composed exactly by 3 byte numbers"
+# define ERR_INVALID_COLOR_2 "RGB color must have exactly 3 byte numbers"
 # define ERR_RGB_OUT_OF_RANGE "Each RGB element must be between 0 and 255"
 
 // Function failure because of malloc error messages
+# define ERR_INIT_GAME "init_game() function failed"
 # define ERR_SET_ELEMS_IN_ARR "set_elems_in_arr() function failed"
 # define ERR_CLEAN_MAP "get_clean_map() function failed"
 # define ERR_SQUARE_MAP "make_square_map() function failed"
@@ -64,7 +65,7 @@
 # endif
 
 typedef double	t_dvector[2];
-typedef	int		t_ivector[2];
+typedef int		t_ivector[2];
 
 typedef enum e_direction
 {
@@ -72,7 +73,7 @@ typedef enum e_direction
 	NO,
 	WE,
 	EA
-} t_direction;
+}	t_direction;
 
 // Structs
 
@@ -83,11 +84,11 @@ typedef struct s_player
 	double		radius;
 	double		fov;
 	// Estas son posiciones
-	t_direction		init_dir; // This is defined as t_dvector init_dir; in JP's part
-	t_dvector		curr_dir;
-	t_dvector		plane;
-	t_ivector		init_pos; // This is called init_map_pos in Jean Paul's part
-	t_dvector		pos; // This is called screen_pos in Jean Paul's part
+	t_direction	init_dir; // This is defined as t_dvector init_dir; in JP's part
+	t_dvector	curr_dir;
+	t_dvector	plane;
+	t_ivector	init_pos; // This is called init_map_pos in Jean Paul's part
+	t_dvector	pos; // This is called screen_pos in Jean Paul's part
 }	t_player;
 
 typedef struct s_parse
@@ -96,8 +97,8 @@ typedef struct s_parse
 	int		map_till_eof_lines;
 	char	*file_path;
 	// TODO: remember to free these two when parse concludes/when needed
-	char 	*F_color_str;
-	char 	*C_color_str;
+	char	*f_color_str;
+	char	*c_color_str;
 	char	**raw_map;
 	char	**flood_check_map;
 }	t_parse;
@@ -106,10 +107,10 @@ typedef struct s_game
 {
 	t_parse			parse;
 	struct s_player	*p;
-	char			*NO_texture;
-	char			*SO_texture;
-	char			*WE_texture;
-	char			*EA_texture;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
 	int				c[4];
 	int				f[4];
 	int				map_rows;

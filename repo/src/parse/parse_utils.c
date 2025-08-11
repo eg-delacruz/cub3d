@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // Intended to avoid leaks in the gnl if EOF isn't reached
-void	reach_eof(int	file_fd)
+void	reach_eof(int file_fd)
 {
 	char	*line;
 
@@ -83,7 +83,8 @@ char	*get_next_valid_line(int file_fd)
 	line = get_next_line(file_fd);
 	while (line)
 	{
-		if (ft_strnstr_exact(line, "\r\n", 2) || ft_strnstr_exact(line, "\n", 1))
+		if (ft_strnstr_exact(line, "\r\n", 2)
+			|| ft_strnstr_exact(line, "\n", 1))
 		{
 			ft_safe_free((void **)&line);
 			line = get_next_line(file_fd);

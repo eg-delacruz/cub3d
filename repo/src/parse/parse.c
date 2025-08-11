@@ -21,7 +21,8 @@ static int	set_elems_in_arr(char **elems, int file_fd)
 	line = get_next_line(file_fd);
 	while (line && i < 6)
 	{
-		if (ft_strnstr_exact(line, "\r\n", 2) || ft_strnstr_exact(line, "\n", 1))
+		if (ft_strnstr_exact(line, "\r\n", 2)
+			|| ft_strnstr_exact(line, "\n", 1))
 		{
 			ft_safe_free((void **)&line);
 			line = get_next_line(file_fd);
@@ -40,7 +41,6 @@ static int	set_elems_in_arr(char **elems, int file_fd)
 	return (0);
 }
 
-// TODO: at the end, check al invalid maps using valgrind
 int	parse_input_file(t_game *game, char *path)
 {
 	int		file_fd;

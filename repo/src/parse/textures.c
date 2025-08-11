@@ -42,10 +42,10 @@ static bool	is_valid_texture(char *path)
 
 int	check_textures(t_game *game)
 {
-	if (!is_valid_texture(game->NO_texture)
-		|| !is_valid_texture(game->SO_texture)
-		|| !is_valid_texture(game->WE_texture)
-		|| !is_valid_texture(game->EA_texture))
+	if (!is_valid_texture(game->no_texture)
+		|| !is_valid_texture(game->so_texture)
+		|| !is_valid_texture(game->we_texture)
+		|| !is_valid_texture(game->ea_texture))
 		return (1);
 	return (0);
 }
