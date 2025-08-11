@@ -1,8 +1,8 @@
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
-WE ./path_to_the_west_texture
+NO ./assets/example.png
+SO ./assets/example.png
+WE ./assets/example.png
+EA ./assets/example.png
 
 111111
 101001

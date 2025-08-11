@@ -16,18 +16,20 @@ static t_game	*init_game(void)
 {
 	t_game	*game;
 
+	game = NULL;
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (puterror(ERR_INIT_GAME), NULL);
+	game->p = NULL;
 	game->no_texture = NULL;
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
-	game->map_rows = 0;
-	game->map_cols = 0;
-	game->p = NULL;
 	game->c[3] = -1;
 	game->f[3] = -1;
+	game->map_rows = 0;
+	game->map_cols = 0;
+	game->map = NULL;
 	return (game);
 }
 

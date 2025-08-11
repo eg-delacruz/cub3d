@@ -29,4 +29,4 @@ Regarding map:
 
 // TODO: 
 - check for leaks for all possible maps when parse is finished
-- norminette
+- norminette ✅

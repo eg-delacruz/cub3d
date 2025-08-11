@@ -57,11 +57,11 @@ int	parse_input_file(t_game *game, char *path)
 		return (free_game(game), 1);
 	if (check_duplicate_elems(game, elems, file_fd) == true)
 		return (free_game(game), 1);
+	if (is_valid_map(game, file_fd) == false)
+		return (free_game(game), 1);
 	if (check_textures(game) == 1)
 		return (free_game(game), 1);
 	if (check_colors(game) == 1)
-		return (free_game(game), 1);
-	if (is_valid_map(game, file_fd) == false)
 		return (free_game(game), 1);
 	return (0);
 }

@@ -23,6 +23,7 @@ void	reach_eof(int file_fd)
 		ft_safe_free((void **)&line);
 		line = get_next_line(file_fd);
 	}
+	close (file_fd);
 }
 
 int	get_file_len(char *path)

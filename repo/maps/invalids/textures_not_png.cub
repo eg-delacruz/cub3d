@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture.png
-WE ./path_to_the_west_texture.png
-EA ./path_to_the_east_texture.png
+NO ./assets/example.png
+SO ./assets/example.png
+WE ./assets/example.p
+EA ./assets/example.png
 
 F 20,20,20
 C 200,200,200

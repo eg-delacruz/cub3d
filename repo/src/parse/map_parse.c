@@ -12,19 +12,25 @@
 
 #include "cub3d.h"
 
-// Returns false if ther is something wrong with map
+// Returns false if there is something wrong with map
 static bool	count_map_lines(t_game *game, int file_fd)
 {
 	char	*line;
 
 	line = get_next_valid_line(file_fd);
 	if (line == NULL)
-		return (puterror(ERR_NO_MAP), false);
+		return (puterror(ERR_NO_MAP), reach_eof(file_fd), false);
 	if (all_chars_in_set(line, " \n\r") == true
 		|| all_chars_in_set(line, " \n") == true)
-		return (puterror(ERR_ELEMS_BEFORE_MAP), false);
+	{
+		ft_safe_free((void **)&line);
+		return (puterror(ERR_ELEMS_BEFORE_MAP), reach_eof(file_fd), false);
+	}
 	if (all_chars_in_set(line, "1 \n\r") == false)
-		return (puterror(ERR_WRONG_MAP_1), false);
+	{
+		ft_safe_free((void **)&line);
+		return (puterror(ERR_WRONG_MAP_1), reach_eof(file_fd), false);
+	}
 	while (line)
 	{
 		game->parse.map_till_eof_lines++;
