@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game_struct.c                                 :+:      :+:    :+:   */
+/*   init_program_struct.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:55:34 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/18 10:55:34 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/08/12 21:53:57 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_game	*init_game(void)
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
-	game->c[3] = -1;
-	game->f[3] = -1;
+	game->c = -1;
+	game->f = -1;
 	game->map_rows = 0;
 	game->map_cols = 0;
 	game->map = NULL;

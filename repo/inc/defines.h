@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/11 17:10:12 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/12 21:50:17 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ typedef struct s_game
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
-	int				c[4];
-	int				f[4];
+	int32_t			c;
+	int32_t			f;
 	int				map_rows;
 	int				map_cols;
 	char			**map;

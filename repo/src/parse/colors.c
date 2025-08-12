@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:01:33 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/09 16:01:33 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/08/12 21:53:34 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,20 @@ static bool	are_valid_symbols(char **color)
 	return (true);
 }
 
-static int	get_rgb_ints(int *dst, char **src)
+static int	get_rgb_ints(int32_t *dst, char **src)
 {
 	int	i;
+	int	rgb[3];
 
 	i = 0;
 	while (src[i])
 	{
-		dst[i] = ft_atoi(src[i]);
-		if (dst[i] < 0 || dst[i] > 255)
+		rgb[i] = ft_atoi(src[i]);
+		if (rgb[i] < 0 || rgb[i] > 255)
 			return (puterror(ERR_RGB_OUT_OF_RANGE), 1);
 		i++;
 	}
+	*dst = get_rgba(rgb[0], rgb[1], rgb[2], 255);
 	return (0);
 }
 
@@ -86,7 +88,7 @@ int	check_colors(t_game *game)
 	}
 	if (!are_valid_symbols(c) || !are_valid_symbols(f))
 		return (ft_free_split(c), ft_free_split(f), 1);
-	if (get_rgb_ints(game->c, c) == 1 || get_rgb_ints(game->f, f) == 1)
+	if (get_rgb_ints(&game->c, c) == 1 || get_rgb_ints(&game->f, f) == 1)
 		return (ft_free_split(c), ft_free_split(f), 1);
 	ft_free_split(c);
 	ft_free_split(f);

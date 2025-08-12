@@ -18,7 +18,7 @@ void draw_ver_line(t_game *game, int x, int start, int end, int32_t color)
 		start = temp;
 	}
 	while (++i < start)
-		mlx_put_pixel(game->image, x, i, game->ceiling_color);
+		mlx_put_pixel(game->image, x, i, game->c);
 	while (start < end)
 	{
 		mlx_put_pixel(game->image, x, start, color);
@@ -26,5 +26,5 @@ void draw_ver_line(t_game *game, int x, int start, int end, int32_t color)
 	}
 	i = end - 1;
 	while (++i < SCREEN_H)
-		mlx_put_pixel(game->image, x, i, game->floor_color);
+		mlx_put_pixel(game->image, x, i, game->f);
 }
