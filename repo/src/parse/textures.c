@@ -21,7 +21,7 @@ static bool	is_valid_texture(char *path)
 	if (!path)
 		return (false);
 	len = ft_strlen(path);
-	if (path[len - 4] != '.'
+	if (len < 4 || path[len - 4] != '.'
 		|| path[len - 3] != 'p'
 		|| path[len - 2] != 'n'
 		|| path[len - 1] != 'g')
@@ -32,7 +32,6 @@ static bool	is_valid_texture(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		close(fd);
 		puterror(ERR_NO_TEXTURE);
 		return (false);
 	}
