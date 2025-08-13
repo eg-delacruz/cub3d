@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:55:34 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 21:53:57 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/12 23:03:53 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ static t_game	*init_game(void)
 	return (game);
 }
 
+static void	init_parse(t_game *game)
+{
+	game->parse.c_color_str = NULL;
+	game->parse.f_color_str = NULL;
+	game->parse.file_path = NULL;
+	game->parse.raw_map = NULL;
+	game->parse.map_till_eof_lines = 0;
+	game->parse.flood_check_map = NULL;
+}
+
 static int	init_player(t_game *game)
 {
 	game->p = malloc(sizeof(t_player));
@@ -46,16 +56,6 @@ static int	init_player(t_game *game)
 	game->p->curr_dir[0] = 0;
 	game->p->curr_dir[1] = 0;
 	return (0);
-}
-
-static void	init_parse(t_game *game)
-{
-	game->parse.c_color_str = NULL;
-	game->parse.f_color_str = NULL;
-	game->parse.file_path = NULL;
-	game->parse.raw_map = NULL;
-	game->parse.map_till_eof_lines = 0;
-	game->parse.flood_check_map = NULL;
 }
 
 t_game	*init_program_struct(void)

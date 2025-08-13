@@ -1,18 +1,18 @@
 #include "cub3d.h"
 
-int32_t	get_wall_color(int pos, t_direction wall_dir, int side)
+int32_t	get_wall_color(char pos, t_direction wall_dir, int side)
 {
 	// int32_t alpha = side == 1 ? 128 : 255;
 	(void)side;
-	if (pos > 0)
+	if (pos == '1')
 	{
-		if (wall_dir == NO)
+		if (wall_dir == N)
 			return (get_rgba(255, 0, 0, 255));
-		if (wall_dir == SO)
+		if (wall_dir == S)
 			return (get_rgba(0, 255, 0, 255));
-		if (wall_dir == WE)
+		if (wall_dir == W)
 			return (get_rgba(0, 0, 255, 255));
-		if (wall_dir == EA)
+		if (wall_dir == E)
 			return (get_rgba(128, 128, 128, 255));
 	}
 	return (get_rgba(0, 0, 0, 255));
@@ -21,7 +21,7 @@ int32_t	get_wall_color(int pos, t_direction wall_dir, int side)
 
 void raycasting(t_game *game)
 {
-	t_player	*player = game->player;
+	t_player	*player = game->p;
 	double posX = player->pos[X], posY = player->pos[Y]; // x and y start position;
 	double dirX = player->curr_dir[X], dirY = player->curr_dir[Y];	   // initial direction vector;
 	double planeX = player->plane[X], planeY = player->plane[Y];
@@ -92,9 +92,9 @@ void raycasting(t_game *game)
 				mapY += stepY;
 				side = 1;
 			}
-			if (mapX < 0 || mapX >= MAP_W || mapY < 0 || mapY >= MAP_H)
+			if (mapX < 0 || mapX >= game->map_cols || mapY < 0 || mapY >= game->map_rows)
 				break;
-			if (game->worldMap[mapY][mapX] > 0)
+			if (game->map[mapY][mapX] == '1')
 				hit = 1;
 		}
 
@@ -103,16 +103,16 @@ void raycasting(t_game *game)
 		if (side == 0)
 		{
 			if (rayDirX > 0)
-				wall_dir = WE;
+				wall_dir = E;
 			else
-				wall_dir = EA;
+				wall_dir = W;
 		}
 		else
 		{
 			if (rayDirY > 0)
-				wall_dir = NO;
+				wall_dir = S;
 			else
-				wall_dir = SO;
+				wall_dir = N;
 		}
 
 		// Calcular la distanci proyectada a la direccion de la camara (La distancia Euclidea causaria efecto ojo de pescado);
@@ -131,19 +131,18 @@ void raycasting(t_game *game)
 		if (drawEnd >= SCREEN_H)
 			drawEnd = SCREEN_H - 1;
 
-		int32_t color;
-		if (game->worldMap[mapY][mapX] == 1)
-			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
-		else if (game->worldMap[mapY][mapX] == 2)
-			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
-		else if (game->worldMap[mapY][mapX] == 3)
-			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
-		else if (game->worldMap[mapY][mapX] == 4)
-			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
-		else if (game->worldMap[mapY][mapX] == 5)
-			color = get_wall_color(game->worldMap[mapY][mapX], wall_dir, side);
-		else
-			color = get_rgba(0, 0, 0, 255);
+		int32_t color = get_wall_color(game->map[mapY][mapX], wall_dir, side);
+
+		// else if (game->map[mapY][mapX] == 2)
+		// 	color = get_wall_color(game->map[mapY][mapX], wall_dir, side);
+		// else if (game->map[mapY][mapX] == 3)
+		// 	color = get_wall_color(game->map[mapY][mapX], wall_dir, side);
+		// else if (game->map[mapY][mapX] == 4)
+		// 	color = get_wall_color(game->map[mapY][mapX], wall_dir, side);
+		// else if (game->map[mapY][mapX] == 5)
+		// 	color = get_wall_color(game->map[mapY][mapX], wall_dir, side);
+		// else
+		// 	color = get_rgba(0, 0, 0, 255);
 		draw_ver_line(game, x, drawStart, drawEnd, color);
 		x++;
 	}

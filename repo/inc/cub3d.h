@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/11 17:17:03 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/13 20:48:31 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ void		draw_ver_line(t_game *game, int x, int start, int end, int32_t color);
 // Game utils
 bool		init_mlx(t_game	*game);
 int			**create_map(void);
-t_player	*init_player2(t_direction init_dir);
-void		setup_game(t_game *game);
+bool		setup_game(t_game *game);
 
 // Vector utils
 void		rotate_dvector(t_dvector *vec, double rot);
@@ -92,7 +91,7 @@ void 		move_player(t_game *game, t_key_mov key);
 void 		strafe_player(t_game *game, t_key_mov key);
 
 // Player utils
-bool 		is_wall_collision(t_map map, double y, double x, double radius);
+bool 		is_wall_collision(t_game *game, double y, double x, double radius);
 void		show_player(t_player *player);
 void		set_player_dir(t_player	*player, t_direction init_dir);
 

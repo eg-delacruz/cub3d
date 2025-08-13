@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:55:14 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/08 18:55:14 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:26:40 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	store_init_player_dir(t_game *game)
 
 	dir = game->map[game->p->init_pos[1]][game->p->init_pos[0]];
 	if (dir == 'N')
-		game->p->init_dir = NO;
+		game->p->init_dir = N;
 	else if (dir == 'S')
-		game->p->init_dir = SO;
+		game->p->init_dir = S;
 	else if (dir == 'W')
-		game->p->init_dir = WE;
+		game->p->init_dir = W;
 	else if (dir == 'E')
-		game->p->init_dir = EA;
+		game->p->init_dir = E;
 	else
 		return ;
 	game->map[game->p->init_pos[1]][game->p->init_pos[0]] = '0';

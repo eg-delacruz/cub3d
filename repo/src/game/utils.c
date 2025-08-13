@@ -1,34 +1,5 @@
 #include "cub3d.h"
 
-int worldMap[MAP_H][MAP_W] =
-	{
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
-
-// -----------------------------------------------------------------------------
-
 bool	init_mlx(t_game	*game)
 {
 	game->mlx = mlx_init(SCREEN_W, SCREEN_H, "cub3D", true);
@@ -52,52 +23,26 @@ bool	init_mlx(t_game	*game)
 	return (true);
 }
 
-int		**create_map(void)
+static void	prepare_player(t_player *p)
 {
-	int	**map;
-	int	i;
-	int	j;
-
-	map = (int **)malloc(MAP_H * sizeof(int *));
-	i = 0;
-	while (i < MAP_H)
-	{
-		j = 0;
-		map[i] = (int *)malloc(MAP_W * sizeof(int));
-		while (j < MAP_W)
-		{
-			map[i][j] = worldMap[i][j];
-			j++;
-		}
-		i++;
-	}
-	return (map);
+	if (!p)
+		return ;
+	p->fov = FOV;
+	set_player_dir(p, p->init_dir);
+	set_dvector(&p->pos, (double)p->init_pos[X] +0.5, (double)p->init_pos[Y] + 0.5);
+	set_ivector(&p->map_pos, p->init_pos[X], p->init_pos[Y]);
+	p->radius = 0.01;
+	p->speed_mov = 0.33;
+	p->speed_rot = 0.001;
 }
 
-t_player	*init_player2(t_direction init_dir)
+bool	setup_game(t_game *game)
 {
-	t_player	*player;
-
-	player = (t_player	*)malloc(sizeof(t_player));
-
-	player->fov = FOV;
-	set_player_dir(player, init_dir);
-	player->pos[X] = 3.0;
-	player->pos[Y] = 3.0;
-	player->map_pos[X] = (int)player->pos[X];
-	player->map_pos[Y] = (int)player->pos[Y];
-	player->radius = 0.3;
-	player->speed_mov = 0.33;
-	player->speed_rot = 0.001;
-	return (player);
-}
-
-void	setup_game(t_game *game)
-{
-	game->player = init_player2(WE);
-	game->ceiling_color = get_rgba(52, 204, 235, 255);
-	game->floor_color = get_rgba(64, 50, 40, 255);
-	game->worldMap = create_map();
+	prepare_player(game->p);
 	game->cursor_blocked = false;
+	if (!init_mlx(game))
+		return (free_game(game), false);
+	setup_hooks(game);
+	return (true);
 }
 

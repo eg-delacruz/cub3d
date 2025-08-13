@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 21:50:17 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:31:58 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ typedef int		**t_map;
 
 typedef enum e_direction
 {
-	SO,
-	NO,
-	WE,
-	EA
+	S = 'S',
+	N = 'N',
+	W = 'W',
+	E = 'E'
 }	t_direction;
 
 typedef enum e_key_mov

@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 22:59:02 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/11 17:28:46 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/13 20:42:40 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ int32_t	main(int argc, char *args[])
 		return (EXIT_FAILURE);
 	if (parse_input_file(game, args[1]) == 1)
 		return (EXIT_FAILURE);
-	if (!init_mlx(game))
+	if (!setup_game(game))
 		return (EXIT_FAILURE);
-	(setup_game(game), setup_hooks(game));
-	show_player(game->player);
+	show_player(game->p);
+	int i;
+	i = -1;
+	while (++i < game->map_rows)
+		printf("%s\n", game->map[i]);
 	raycasting(game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);

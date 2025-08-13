@@ -61,9 +61,9 @@ void	mouse_move(double xpos, double ypos, void *param)
 	last_x = SCREEN_W / 2;
 	if (!game->cursor_blocked)
 		return ;
-	rot = (xpos - last_x) * game->player->speed_rot;
-	rotate_dvector(&game->player->curr_dir, rot);
-	rotate_dvector(&game->player->plane, rot);
+	rot = (xpos - last_x) * game->p->speed_rot;
+	rotate_dvector(&game->p->curr_dir, rot);
+	rotate_dvector(&game->p->plane, rot);
 	(void)ypos;
 	last_x = xpos;
 	mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);

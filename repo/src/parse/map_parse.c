@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:27:59 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/21 17:27:59 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:31:31 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,6 @@ bool	is_valid_map(t_game *game, int file_fd)
 	if (make_square_map(game->map, game->map_cols) == 1)
 		return (false);
 	replace_empty_spaces_by_ones(game->map);
-	game->p->pos[0] = game->p->init_pos[0];
-	game->p->pos[1] = game->p->init_pos[1];
 	store_init_player_dir(game);
 	return (true);
 }

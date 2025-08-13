@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erde-la- <erde-la-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:47:59 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/07/24 10:47:59 by erde-la-         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:49:18 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,7 @@ bool	is_exactly_one_player(t_game *game)
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
 				count++;
-				game->p->init_pos[0] = j;
-				game->p->init_pos[1] = i;
+				set_ivector(&game->p->init_pos, j, i);
 			}
 			j++;
 		}
