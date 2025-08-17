@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 22:31:58 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:34:50 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,14 @@ typedef struct s_game
 {
 	t_parse			parse;
 	struct s_player	*p;
-	char			*no_texture;
-	char			*so_texture;
-	char			*we_texture;
-	char			*ea_texture;
+	char			*no_tex_path;
+	char			*so_tex_path;
+	char			*we_tex_path;
+	char			*ea_tex_path;
+	mlx_texture_t	*no_tex;
+	mlx_texture_t	*so_tex;
+	mlx_texture_t	*we_tex;
+	mlx_texture_t	*ea_tex;
 	int32_t			c;
 	int32_t			f;
 	int				map_rows;
