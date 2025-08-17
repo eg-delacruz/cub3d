@@ -42,6 +42,8 @@ bool	setup_game(t_game *game)
 	game->cursor_blocked = false;
 	if (!init_mlx(game))
 		return (free_game(game), false);
+	if (!load_textures(game))
+		return (free_game(game), false);
 	setup_hooks(game);
 	return (true);
 }
