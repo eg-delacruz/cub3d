@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/13 20:48:31 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/16 15:26:48 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,16 @@ int		check_textures(t_game *game);
 int		check_colors(t_game *game);
 bool		check_input_file_name(int argc, char * file_path);
 
+// Textures
+bool	load_textures(t_game *game);
+
 // Errors
 void		puterror(char *message);
 int			puterr_status(char *message, int status);
 
 // Game graphics
 void 		raycasting(t_game *game);
-void		draw_ver_line(t_game *game, int x, int start, int end, int32_t color);
+void		draw_ver_line(t_game *game, int x, int start, int end, mlx_texture_t *texture);
 
 // Game utils
 bool		init_mlx(t_game	*game);

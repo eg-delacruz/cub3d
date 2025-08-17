@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:55:34 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 23:03:53 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:59:16 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static t_game	*init_game(void)
 	if (!game)
 		return (puterror(ERR_INIT_GAME), NULL);
 	game->p = NULL;
-	game->no_texture = NULL;
-	game->so_texture = NULL;
-	game->we_texture = NULL;
-	game->ea_texture = NULL;
+	game->no_tex_path = NULL;
+	game->so_tex_path = NULL;
+	game->we_tex_path = NULL;
+	game->ea_tex_path = NULL;
 	game->c = -1;
 	game->f = -1;
 	game->map_rows = 0;
