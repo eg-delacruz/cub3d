@@ -1,7 +1,7 @@
-NO ./assets/example.png
-SO ./assets/example.png
-EA ./assets/example.png
-WE ./assets/example.png
+NO ./assets/simple/NO.png
+SO ./assets/simple/SO.png
+EA ./assets/simple/EA.png
+WE ./assets/simple/WE.png
 F 150,150,150
 C 75,75,75
 
