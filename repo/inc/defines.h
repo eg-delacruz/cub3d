@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/17 15:34:50 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/21 22:48:31 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct s_parse
 typedef struct s_game
 {
 	t_parse			parse;
-	struct s_player	*p;
+	t_player		*p;
 	char			*no_tex_path;
 	char			*so_tex_path;
 	char			*we_tex_path;
@@ -160,13 +160,31 @@ typedef struct s_game
 	int				map_rows;
 	int				map_cols;
 	char			**map;
-	mlx_t	*mlx;
-	mlx_image_t *image;
-	t_player	*player;
-	t_map		worldMap;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
 	bool		cursor_blocked;
-	int32_t		ceiling_color;
-	int32_t		floor_color;
 }	t_game;
+
+
+typedef	struct s_ray
+{
+	t_dvector	dir;
+	t_ivector	step;
+	t_dvector	side_dist;
+	t_dvector	delta_dist;
+	int			hit;
+	double		perp_wall_dist;
+	int			side;
+	t_direction	wall_dir;
+}	t_ray;
+
+typedef struct s_wall
+{
+	int				height;
+	int				start;
+	int				end;
+	t_direction		dir;
+	mlx_texture_t	*tex;
+}	t_wall;
 
 #endif /* defines.h */
