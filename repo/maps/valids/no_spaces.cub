@@ -1,7 +1,7 @@
-NO ./assets/example.png
-SO ./assets/example.png
-WE ./assets/example.png
-EA ./assets/example.png
+NO ./assets/wolf/bluestone.png
+SO ./assets/wolf/bluestone.png
+WE ./assets/wolf/bluestone.png
+EA ./assets/wolf/bluestone.png
 C 53,41,34
 F 45,33,27
 111111111111111
