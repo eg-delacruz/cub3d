@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:47:59 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 22:49:18 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:08:46 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	get_clean_map(t_game *game)
 	return (0);
 }
 
-int	map_valid_dimentions(t_game *game)
+int	map_valid_dimensions(t_game *game)
 {
 	int	length;
 	int	tmp_length;
