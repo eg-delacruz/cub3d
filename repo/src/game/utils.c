@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/21 14:42:04 by jtivan-r          #+#    #+#             */
+/*   Updated: 2025/08/21 14:43:27 by jtivan-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 bool	init_mlx(t_game	*game)
@@ -29,7 +41,8 @@ static void	prepare_player(t_player *p)
 		return ;
 	p->fov = FOV;
 	set_player_dir(p, p->init_dir);
-	set_dvector(&p->pos, (double)p->init_pos[X] +0.5, (double)p->init_pos[Y] + 0.5);
+	set_dvector(&p->pos, (double)p->init_pos[X] + 0.5, \
+(double)p->init_pos[Y] + 0.5);
 	set_ivector(&p->map_pos, p->init_pos[X], p->init_pos[Y]);
 	p->radius = 0.01;
 	p->speed_mov = 0.33;
@@ -47,4 +60,3 @@ bool	setup_game(t_game *game)
 	setup_hooks(game);
 	return (true);
 }
-
