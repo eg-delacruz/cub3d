@@ -1,30 +1,42 @@
 #include "cub3d.h"
 
-void draw_ver_line(t_game *game, int x, int start, int end, int32_t color)
+static uint32_t	get_tex_pixel(mlx_texture_t *tex, int x, int y)
 {
-	int temp;
-	int i = -1;
+	int		index;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
 
-	if (!game->image)
-		return;
-	if (start < 0 || start > SCREEN_H)
-		return;
-	if (end < 0 || end > SCREEN_H)
-		return;
-	if (start > end)
-	{
-		temp = end;
-		end = start;
-		start = temp;
-	}
-	while (++i < start)
-		mlx_put_pixel(game->image, x, i, game->c);
-	while (start < end)
-	{
-		mlx_put_pixel(game->image, x, start, color);
-		start++;
-	}
-	i = end - 1;
-	while (++i < SCREEN_H)
-		mlx_put_pixel(game->image, x, i, game->f);
+	index = (y * tex->width + x) * tex->bytes_per_pixel;
+	r = tex->pixels[index];
+	g = tex->pixels[index + 1];
+	b = tex->pixels[index + 2];
+	a = tex->pixels[index + 3];
+	return (get_rgba((uint32_t)r, (uint32_t)g, (uint32_t)b, (uint32_t)a));
 }
+
+void	draw_ver_line(t_game *game, int x, t_wall *wall, int tex_x)
+{
+	int			y;
+	int			tex_y;
+	double		tex_ratio;
+	int			visible_h;
+	uint32_t	color;
+
+	visible_h = wall->end - wall->start + 1;
+	y = wall->start - 1;
+	while (++y <= wall->end)
+	{
+		tex_ratio = (double)(y - wall->start) / (double)visible_h;
+		tex_y = (int)(tex_ratio * wall->tex->height);
+		if ((uint32_t)tex_y >= wall->tex->height)
+			tex_y = wall->tex->height - 1;
+		if (tex_y < 0)
+			tex_y = 0;
+		color = get_tex_pixel(wall->tex, tex_x, tex_y);
+		if (x >= 0 && x < SCREEN_W && y >= 0 && y < SCREEN_H)
+			mlx_put_pixel(game->image, x, y, color);
+	}
+}
+
