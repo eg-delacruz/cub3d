@@ -44,8 +44,10 @@ SRC = main.c \
 	/game/utils.c \
 	/player/movement.c \
 	/player/utils.c \
-	/utils/vector.c
-
+	/utils/vector.c \
+	/game/ray.c \
+	/game/ray_utils.c \
+	/game/wall.c
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
