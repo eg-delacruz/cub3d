@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:36:33 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/21 15:29:56 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:20:19 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	get_step_and_side_dist(t_ray *ray, t_player *p)
 	else
 	{
 		ray->step[X] = 1;
-		ray->side_dist[X] = (p->map_pos[X] + 1 - p->pos[X]) * ray->delta_dist[X];
+		ray->side_dist[X] = (p->map_pos[X] + 1 - p->pos[X]) * \
+ray->delta_dist[X];
 	}
 	if (ray->dir[Y] < 0)
 	{
@@ -44,7 +45,8 @@ void	get_step_and_side_dist(t_ray *ray, t_player *p)
 	else
 	{
 		ray->step[Y] = 1;
-		ray->side_dist[Y] = (p->map_pos[Y] + 1 - p->pos[Y]) * ray->delta_dist[Y];
+		ray->side_dist[Y] = (p->map_pos[Y] + 1 - p->pos[Y]) * \
+ray->delta_dist[Y];
 	}
 }
 
@@ -56,7 +58,8 @@ t_direction	get_wall_dir(t_ray *ray)
 			return (E);
 		else
 			return (W);
-	} else
+	}
+	else
 	{
 		if (ray->dir[Y] > 0)
 			return (S);
@@ -71,6 +74,5 @@ void	get_perp_wall_dist(t_ray *ray)
 	if (ray->side == 0)
 		ray->perp_wall_dist = ray->side_dist[X] - ray->delta_dist[X];
 	else
-		ray->perp_wall_dist	= ray->side_dist[Y] - ray->delta_dist[Y];
+		ray->perp_wall_dist = ray->side_dist[Y] - ray->delta_dist[Y];
 }
-

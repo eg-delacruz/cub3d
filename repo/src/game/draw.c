@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:12:10 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/22 00:12:11 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:20:37 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ void	draw_ver_line(t_game *game, int x, t_wall *wall, int tex_x)
 			mlx_put_pixel(game->image, x, y, color);
 	}
 }
-
