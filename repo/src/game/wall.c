@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:56:24 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/22 00:00:23 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:42:58 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	init_wall(t_game *game, t_wall *wall, t_ray *ray)
 {
 	if (!ray || !wall)
 		return ;
-	wall->height = (int)(SCREEN_H / fmax(ray->perp_wall_dist, 0.01));
+	wall->height = (int)(SCREEN_H / fmax(ray->perp_wall_dist, 0.001));
 	wall->start = (SCREEN_H / 2) - (wall->height / 2);
 	if (wall->start < 0)
 		wall->start = 0;
@@ -89,4 +89,5 @@ void	init_wall(t_game *game, t_wall *wall, t_ray *ray)
 		wall->end = SCREEN_H - 1;
 	wall->dir = get_wall_dir(ray);
 	wall->tex = get_wall_tex(game, wall->dir);
+	wall->visible_h = wall->end - wall->start + 1;
 }

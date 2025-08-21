@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/22 00:06:08 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:42:43 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ typedef struct s_wall
 	int				end;
 	t_direction		dir;
 	mlx_texture_t	*tex;
+	int				visible_h;
 }	t_wall;
 
 #endif /* defines.h */
