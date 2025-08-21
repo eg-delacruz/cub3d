@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/21 22:48:31 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:06:08 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,8 @@
 // Field of View
 # define FOV 66
 
-#define SCREEN_W 640
-#define SCREEN_H 480
-#define TEX_W 64
-#define TEX_H 64
-#define MAP_W 24
-#define MAP_H 24
+# define SCREEN_W 640
+# define SCREEN_H 480
 
 typedef double	t_dvector[2];
 typedef int		t_ivector[2];
@@ -103,7 +99,6 @@ typedef enum e_key_mov
 }	t_key_mov;
 
 // Structs
-
 
 /**
  * init_dir: Player initial camera direction when the game starts
@@ -162,11 +157,10 @@ typedef struct s_game
 	char			**map;
 	mlx_t			*mlx;
 	mlx_image_t		*image;
-	bool		cursor_blocked;
+	bool			cursor_blocked;
 }	t_game;
 
-
-typedef	struct s_ray
+typedef struct s_ray
 {
 	t_dvector	dir;
 	t_ivector	step;
