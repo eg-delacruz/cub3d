@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:27:59 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/12 22:31:31 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 00:08:20 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	count_map_lines(t_game *game, int file_fd)
 	return (true);
 }
 
-static void	skip_previos_map_lines(int fd, t_game *game)
+static void	skip_previous_map_lines(int fd, t_game *game)
 {
 	char	*line;
 	int		i;
@@ -67,7 +67,7 @@ static int	get_raw_map_arr(t_game *game)
 	int		map_height;
 
 	fd = open(game->parse.file_path, O_RDONLY);
-	skip_previos_map_lines(fd, game);
+	skip_previous_map_lines(fd, game);
 	map_height = game->parse.map_till_eof_lines;
 	game->parse.raw_map = malloc(sizeof(char *) * (map_height + 1));
 	if (!game->parse.raw_map)
@@ -119,7 +119,7 @@ bool	is_valid_map(t_game *game, int file_fd)
 		return (false);
 	if (get_clean_map(game) == 1)
 		return (false);
-	if (map_valid_dimentions(game) == 1)
+	if (map_valid_dimensions(game) == 1)
 		return (false);
 	if (is_exactly_one_player(game) == false)
 		return (false);
