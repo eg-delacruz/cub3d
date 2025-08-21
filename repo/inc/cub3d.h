@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/16 15:26:48 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/21 23:59:49 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,19 @@ int			puterr_status(char *message, int status);
 
 // Game graphics
 void 		raycasting(t_game *game);
-void		draw_ver_line(t_game *game, int x, int start, int end, mlx_texture_t *texture);
+void		draw_ver_line(t_game *game, int x, t_wall *wall, int tex_x);
+
+// Ray + utils
+void		init_ray(t_ray *ray, t_player *p, int x);
+void		find_wall(t_ray *ray, t_game *game, t_ivector map_pos);
+void		get_delta_dist(t_ray *ray);
+void		get_step_and_side_dist(t_ray *ray, t_player *p);
+t_direction	get_wall_dir(t_ray *ray);
+void		get_perp_wall_dist(t_ray *ray);
+
+// Wall
+void	init_wall(t_game *game, t_wall *wall, t_ray *ray);
+void	draw_wall(t_game *game, t_ray *ray, t_wall *wall, int x);
 
 // Game utils
 bool		init_mlx(t_game	*game);
