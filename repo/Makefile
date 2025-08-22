@@ -128,7 +128,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-	# TODO: uncomment this
+#	TODO: uncomment this
 # 	# @echo "rm -rfd $(MLX42_DIR)"
 # 	@rm -rfd ${MLX42_DIR}
 
