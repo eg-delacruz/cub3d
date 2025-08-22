@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:20:10 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/15 16:02:01 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:42:39 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,9 @@ void	free_game(t_game *game)
 	ft_free_split(game->parse.raw_map);
 	ft_free_split(game->map);
 	ft_free_split(game->parse.flood_check_map);
+	mlx_delete_texture(game->no_tex);
+	mlx_delete_texture(game->so_tex);
+	mlx_delete_texture(game->ea_tex);
+	mlx_delete_texture(game->we_tex);
 	ft_safe_free((void **)&game);
 }
