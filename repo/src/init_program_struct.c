@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:55:34 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/15 15:59:16 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:55:40 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static t_game	*init_game(void)
 {
 	t_game	*game;
 
-	game = NULL;
-	game = malloc(sizeof(t_game));
+	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (puterror(ERR_INIT_GAME), NULL);
 	game->p = NULL;
