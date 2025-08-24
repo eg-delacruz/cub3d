@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:42:04 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/21 14:43:27 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 15:24:23 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,18 @@ bool	setup_game(t_game *game)
 		return (free_game(game), false);
 	setup_hooks(game);
 	return (true);
+}
+
+double	get_rot(double delta_x)
+{
+	double	rot;
+	double	max_rot;
+
+	max_rot = 0.1;
+	rot = -delta_x * 0.002;
+	if (rot > max_rot)
+		rot = max_rot;
+	if (rot < -max_rot)
+		rot = -max_rot;
+	return (rot);
 }

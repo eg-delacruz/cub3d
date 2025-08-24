@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:12:13 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/22 00:12:14 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 15:35:45 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	close_hook(void *param)
 
 	game = (t_game *)param;
 	mlx_close_window(game->mlx);
+	free_game(game);
 }
 
 void	block_cursor(void *param)
@@ -28,6 +29,7 @@ void	block_cursor(void *param)
 	if (!game->cursor_blocked)
 	{
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+		mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);
 		game->cursor_blocked = true;
 	}
 	else
@@ -65,20 +67,30 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 
 void	mouse_move(double xpos, double ypos, void *param)
 {
-	t_game			*game;
-	static double	last_x;
-	double			rot;
+	t_game				*game;
+	static t_dvector	last = {-1.0, -1.0};
+	double				delta_x;
+	double				rot;
 
 	game = (t_game *)param;
-	last_x = SCREEN_W / 2;
 	if (!game->cursor_blocked)
-		return ;
-	rot = (xpos - last_x) * game->p->speed_rot;
-	rotate_dvector(&game->p->curr_dir, rot);
-	rotate_dvector(&game->p->plane, rot);
-	(void)ypos;
-	last_x = xpos;
-	mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);
+		return (set_dvector(&last, -1, -1));
+	if (last[X] < 0)
+		return (set_dvector(&last, xpos, ypos));
+	delta_x = xpos - last[X];
+	rot = get_rot(delta_x);
+	if (fabs(rot) > 0.001)
+	{
+		rotate_dvector(&game->p->curr_dir, rot);
+		rotate_dvector(&game->p->plane, rot);
+	}
+	set_dvector(&last, xpos, ypos);
+	if (fabs(xpos - SCREEN_W / 2) > SCREEN_W / 4 ||
+fabs(ypos - SCREEN_H / 2) > SCREEN_H / 4)
+	{
+		mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);
+		set_dvector(&last, SCREEN_W / 2, SCREEN_H / 2);
+	}
 	raycasting(game);
 }
 
