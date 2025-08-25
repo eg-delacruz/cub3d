@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/22 00:42:43 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 15:52:24 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	bool			cursor_blocked;
+	struct timeval	last_time_frame;
+	double			delta_time;
 }	t_game;
 
 typedef struct s_ray
