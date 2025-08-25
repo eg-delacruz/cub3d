@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:28 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/22 22:15:30 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:25:07 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ bool		init_mlx(t_game	*game);
 int			**create_map(void);
 bool		setup_game(t_game *game);
 double		get_rot(double delta_x);
+double		get_delta_time(struct timeval *last_frame_time);
 
 // Vector utils
 void		rotate_dvector(t_dvector *vec, double rot);
