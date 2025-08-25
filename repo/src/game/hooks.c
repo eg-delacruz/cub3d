@@ -6,20 +6,11 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:12:13 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/24 15:35:45 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:24:09 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	close_hook(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	mlx_close_window(game->mlx);
-	free_game(game);
-}
 
 void	block_cursor(void *param)
 {
@@ -44,8 +35,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		return (close_hook(param));
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
+		return (mlx_close_window(game->mlx));
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_RELEASE)
 		return (block_cursor(param));
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
@@ -85,12 +76,20 @@ void	mouse_move(double xpos, double ypos, void *param)
 		rotate_dvector(&game->p->plane, rot);
 	}
 	set_dvector(&last, xpos, ypos);
-	if (fabs(xpos - SCREEN_W / 2) > SCREEN_W / 4 ||
+	if (fabs(xpos - SCREEN_W / 2) > SCREEN_W / 4 || \
 fabs(ypos - SCREEN_H / 2) > SCREEN_H / 4)
 	{
 		mlx_set_mouse_pos(game->mlx, SCREEN_W / 2, SCREEN_H / 2);
 		set_dvector(&last, SCREEN_W / 2, SCREEN_H / 2);
 	}
+}
+
+void	update_game(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	game->delta_time = get_delta_time(&game->last_time_frame);
 	raycasting(game);
 }
 
@@ -99,4 +98,5 @@ void	setup_hooks(t_game *game)
 {
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_cursor_hook(game->mlx, mouse_move, game);
+	mlx_loop_hook(game->mlx, update_game, game);
 }
