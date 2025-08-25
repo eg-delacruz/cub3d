@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:42:04 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/24 15:24:23 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:25:46 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	prepare_player(t_player *p)
 (double)p->init_pos[Y] + 0.5);
 	set_ivector(&p->map_pos, p->init_pos[X], p->init_pos[Y]);
 	p->radius = 0.01;
-	p->speed_mov = 0.33;
+	p->speed_mov = 20;
 	p->speed_rot = 0.001;
 }
 
@@ -73,4 +73,16 @@ double	get_rot(double delta_x)
 	if (rot < -max_rot)
 		rot = -max_rot;
 	return (rot);
+}
+
+double	get_delta_time(struct timeval *last_frame_time)
+{
+	struct timeval	current_time;
+	double			delta_time;
+
+	gettimeofday(&current_time, NULL);
+	delta_time = (double)(current_time.tv_sec - last_frame_time->tv_sec) + \
+(double)(current_time.tv_usec - last_frame_time->tv_usec) / 1000000.0;
+	*last_frame_time = current_time;
+	return (delta_time);
 }
