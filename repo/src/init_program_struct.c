@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:55:34 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/23 14:55:40 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 15:52:40 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static t_game	*init_game(void)
 	game->map_rows = 0;
 	game->map_cols = 0;
 	game->map = NULL;
+	gettimeofday(&game->last_time_frame, NULL);
 	return (game);
 }
 
