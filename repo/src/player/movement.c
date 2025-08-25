@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:12:32 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/22 00:28:34 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:21:01 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	rotate_player(t_game *game, t_key_mov key)
 	p->curr_dir[Y] = old_dir_x * sin(angle) + p->curr_dir[Y] * cos(angle);
 	p->plane[X] = p->plane[X] * cos(angle) - p->plane[Y] * sin(angle);
 	p->plane[Y] = old_plane_x * sin(angle) + p->plane[Y] * cos(angle);
-	raycasting(game);
 }
 
 /**
@@ -44,14 +43,16 @@ void	move_player(t_game *game, t_key_mov key)
 	double		dir;
 	t_dvector	new_pos;
 	t_player	*p;
+	double		move_distance;
 
 	if (key == UP)
 		dir = 1;
 	else
 		dir = -1;
 	p = game->p;
-	new_pos[X] = p->pos[X] + (dir * p->curr_dir[X] * p->speed_mov);
-	new_pos[Y] = p->pos[Y] + (dir * p->curr_dir[Y] * p->speed_mov);
+	move_distance = p->speed_mov * game->delta_time;
+	new_pos[X] = p->pos[X] + (dir * p->curr_dir[X] * move_distance);
+	new_pos[Y] = p->pos[Y] + (dir * p->curr_dir[Y] * move_distance);
 	if (!is_wall_collision(game, p->pos[X], new_pos[Y], p->radius))
 	{
 		p->pos[Y] = new_pos[Y];
@@ -62,7 +63,6 @@ void	move_player(t_game *game, t_key_mov key)
 		p->pos[X] = new_pos[X];
 		p->map_pos[X] = (int)new_pos[X];
 	}
-	raycasting(game);
 }
 
 /**
@@ -73,14 +73,16 @@ void	strafe_player(t_game *game, t_key_mov key)
 	double		dir;
 	t_dvector	new_pos;
 	t_player	*p;
+	double		move_distance;
 
 	p = game->p;
 	if (key == LEFT)
 		dir = -1;
 	else
 		dir = 1;
-	new_pos[X] = p->pos[X] + (dir * p->curr_dir[Y] * p->speed_mov);
-	new_pos[Y] = p->pos[Y] - (dir * p->curr_dir[X] * p->speed_mov);
+	move_distance = p->speed_mov * game->delta_time;
+	new_pos[X] = p->pos[X] + (dir * p->curr_dir[Y] * move_distance);
+	new_pos[Y] = p->pos[Y] - (dir * p->curr_dir[X] * move_distance);
 	if (!is_wall_collision(game, new_pos[X], p->pos[Y], p->radius))
 	{
 		p->pos[X] = new_pos[X];
@@ -91,5 +93,4 @@ void	strafe_player(t_game *game, t_key_mov key)
 		p->pos[Y] = new_pos[Y];
 		p->map_pos[Y] = (int)new_pos[Y];
 	}
-	raycasting(game);
 }
