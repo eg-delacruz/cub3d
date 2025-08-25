@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:36:33 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/22 00:20:19 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:31:53 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ t_direction	get_wall_dir(t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->dir[X] > 0)
-			return (E);
-		else
 			return (W);
+		else
+			return (E);
 	}
 	else
 	{
 		if (ray->dir[Y] > 0)
-			return (S);
-		else
 			return (N);
+		else
+			return (S);
 	}
 	return (N);
 }
