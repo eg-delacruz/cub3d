@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:20:10 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/22 22:01:15 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:00:47 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ void	free_game(t_game *game)
 	mlx_delete_texture(game->so_tex);
 	mlx_delete_texture(game->ea_tex);
 	mlx_delete_texture(game->we_tex);
-	mlx_delete_image(game->mlx, game->image);
 	ft_safe_free((void **)&game);
 }
