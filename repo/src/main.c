@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 22:59:02 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/22 21:14:39 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:00:53 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int32_t	main(int argc, char *args[])
 		return (EXIT_FAILURE);
 	if (!setup_game(game))
 		return (EXIT_FAILURE);
-	raycasting(game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	free_game(game);
