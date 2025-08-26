@@ -131,7 +131,6 @@ typedef struct s_parse
 	int		file_lines;
 	int		map_till_eof_lines;
 	char	*file_path;
-	// TODO: remember to free these two when parse concludes/when needed
 	char	*f_color_str;
 	char	*c_color_str;
 	char	**raw_map;

@@ -12,6 +12,18 @@
 
 #include "cub3d.h"
 
+static void	mlx_free_functions(t_game *game)
+{
+	if (game->no_tex)
+		mlx_delete_texture(game->no_tex);
+	if (game->so_tex)
+		mlx_delete_texture(game->so_tex);
+	if (game->we_tex)
+		mlx_delete_texture(game->ea_tex);
+	if (game->ea_tex)
+		mlx_delete_texture(game->we_tex);
+}
+
 void	free_elems_arr_at_malloc_err(char **elems, size_t iterator)
 {
 	while (iterator > 0)
@@ -30,9 +42,6 @@ void	free_game(t_game *game)
 	ft_free_split(game->parse.raw_map);
 	ft_free_split(game->map);
 	ft_free_split(game->parse.flood_check_map);
-	mlx_delete_texture(game->no_tex);
-	mlx_delete_texture(game->so_tex);
-	mlx_delete_texture(game->ea_tex);
-	mlx_delete_texture(game->we_tex);
+	mlx_free_functions(game);
 	ft_safe_free((void **)&game);
 }

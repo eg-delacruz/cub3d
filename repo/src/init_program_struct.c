@@ -24,6 +24,10 @@ static t_game	*init_game(void)
 	game->so_tex_path = NULL;
 	game->we_tex_path = NULL;
 	game->ea_tex_path = NULL;
+	game->no_tex = NULL;
+	game->so_tex = NULL;
+	game->we_tex = NULL;
+	game->ea_tex = NULL;
 	game->c = -1;
 	game->f = -1;
 	game->map_rows = 0;
