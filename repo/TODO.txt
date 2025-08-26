@@ -1,3 +1,0 @@
-1. Handle segfaults when errors occur
-2. Display error when multiple arguments are received
-3. Check all TODOs in the whole project, including the Makefile

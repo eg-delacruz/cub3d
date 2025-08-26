@@ -62,7 +62,6 @@ ORANGE3 = \033[38;5;208m
 YELLOW1 = \033[38;5;214m
 YELLOW2 = \033[38;5;220m
 
-# TODO: check if MLX already exists to avoid clonning it when doing make re
 all: header libmlx $(NAME)
 
 header:
@@ -120,17 +119,12 @@ valgrind: libmlx $(NAME)
 
 clean:
 	@printf "🧼 Cleaning .o files! 🫧\n"
-	# TODO: uncomment this
-# 	# @rm -rfd $(MLX42_DIR)/build
 	@rm -rfd $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-#	TODO: uncomment this
-# 	# @echo "rm -rfd $(MLX42_DIR)"
-# 	@rm -rfd ${MLX42_DIR}
 
 test:
 	@echo "$(LIB_DIR)"

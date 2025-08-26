@@ -55,7 +55,7 @@ void	draw_ver_line(t_game *game, int x, t_wall *wall, int tex_x)
 	while (++y <= wall->end)
 	{
 		screen_y_ratio = (double)(y - wall->start) / \
-(double)(wall->end - wall->start);
+	(double)(wall->end - wall->start);
 		tex_y = (int)((r_start + screen_y_ratio * (r_end - r_start)) * \
 wall->tex->height);
 		if ((uint32_t)tex_y >= wall->tex->height)

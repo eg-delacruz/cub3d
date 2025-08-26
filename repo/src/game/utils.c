@@ -42,7 +42,7 @@ static void	prepare_player(t_player *p)
 	p->fov = FOV;
 	set_player_dir(p, p->init_dir);
 	set_dvector(&p->pos, (double)p->init_pos[X] + 0.5, \
-(double)p->init_pos[Y] + 0.5);
+	(double)p->init_pos[Y] + 0.5);
 	set_ivector(&p->map_pos, p->init_pos[X], p->init_pos[Y]);
 	p->radius = 0.01;
 	p->speed_mov = 20;
@@ -82,7 +82,7 @@ double	get_delta_time(struct timeval *last_frame_time)
 
 	gettimeofday(&current_time, NULL);
 	delta_time = (double)(current_time.tv_sec - last_frame_time->tv_sec) + \
-(double)(current_time.tv_usec - last_frame_time->tv_usec) / 1000000.0;
+	(double)(current_time.tv_usec - last_frame_time->tv_usec) / 1000000.0;
 	*last_frame_time = current_time;
 	return (delta_time);
 }

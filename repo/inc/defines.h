@@ -117,12 +117,12 @@ typedef struct s_player
 	double		speed_mov;
 	double		radius;
 	double		fov;
-	// Estas son posiciones
-	t_direction	init_dir; // This is defined as t_dvector init_dir; in JP's part
+	// These are positions
+	t_direction	init_dir;
 	t_dvector	curr_dir;
 	t_dvector	plane;
-	t_ivector	init_pos; // This is called init_map_pos in Jean Paul's part
-	t_dvector	pos; // This is called screen_pos in Jean Paul's part
+	t_ivector	init_pos;
+	t_dvector	pos;
 	t_ivector	map_pos;
 }	t_player;
 
