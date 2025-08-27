@@ -1,7 +1,7 @@
 NO ./assets/wolf/bluestone.png
-SO ./assets/wolf/bluestone.png
-WE ./assets/wolf/bluestone.png
-EA ./assets/wolf/bluestone.png
+SO ./assets/wolf/redbrick.png
+WE ./assets/wolf/wood.png
+EA ./assets/wolf/mossy.png
 C 53,41,34
 F 45,33,27
 111111111111111

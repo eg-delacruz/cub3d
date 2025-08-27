@@ -91,7 +91,7 @@ libmlx: $(MLX42)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 	@printf "🔧 $(GRAY)$(CC) $(CFLAGS) -c $< -o $@$(RST)\n"
 
 $(LIBFT):

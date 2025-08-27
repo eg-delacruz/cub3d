@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:12:13 by jtivan-r          #+#    #+#             */
-/*   Updated: 2025/08/25 15:24:09 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/27 10:36:25 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	update_game(void *param)
 	raycasting(game);
 }
 
-//  TODO: Hacer hook del cursor y mejorar close_hook;
 void	setup_hooks(t_game *game)
 {
 	mlx_key_hook(game->mlx, key_hook, game);

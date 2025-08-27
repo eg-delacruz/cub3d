@@ -6,7 +6,7 @@
 /*   By: jtivan-r <jtivan-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 23:28:23 by erde-la-          #+#    #+#             */
-/*   Updated: 2025/08/24 15:52:24 by jtivan-r         ###   ########.fr       */
+/*   Updated: 2025/08/27 10:37:18 by jtivan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@
 // For the vector components
 # define X 0
 # define Y 1
-# define COS 0
-# define SIN 1
 
 // Field of View
 # define FOV 66
 
-# define SCREEN_W 640
-# define SCREEN_H 480
+# define SCREEN_W 1280
+# define SCREEN_H 960
 
 typedef double	t_dvector[2];
 typedef int		t_ivector[2];
@@ -117,7 +115,6 @@ typedef struct s_player
 	double		speed_mov;
 	double		radius;
 	double		fov;
-	// These are positions
 	t_direction	init_dir;
 	t_dvector	curr_dir;
 	t_dvector	plane;
